@@ -1,0 +1,2 @@
+Tradingview Binance Trading Bot
+===
