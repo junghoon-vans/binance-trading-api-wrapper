@@ -1,0 +1,10 @@
+click==7.1.2
+flake8==3.9.1
+Flask==1.1.2
+itsdangerous==1.1.0
+Jinja2==2.11.3
+MarkupSafe==1.1.1
+mccabe==0.6.1
+pycodestyle==2.7.0
+pyflakes==2.3.1
+Werkzeug==1.0.1
