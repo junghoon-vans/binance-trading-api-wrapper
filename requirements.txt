@@ -1,8 +1,12 @@
 aniso8601==9.0.1
 appdirs==1.4.4
+APScheduler==3.7.0
 attrs==21.2.0
+binance-futures==1.1.0
 black==21.5b0
+certifi==2020.12.5
 cfgv==3.2.0
+chardet==4.0.0
 click==7.1.2
 distlib==0.3.1
 filelock==3.0.12
@@ -11,6 +15,7 @@ flasgger==0.9.5
 Flask==1.1.2
 Flask-RESTful==0.3.8
 identify==2.2.4
+idna==2.10
 itsdangerous==1.1.0
 Jinja2==2.11.3
 jsonschema==3.2.0
@@ -28,7 +33,11 @@ pyrsistent==0.17.3
 pytz==2021.1
 PyYAML==5.4.1
 regex==2021.4.4
+requests==2.25.1
 six==1.16.0
 toml==0.10.2
+tzlocal==2.1
+urllib3==1.26.4
 virtualenv==20.4.6
+websocket-client==0.59.0
 Werkzeug==1.0.1
