@@ -1,9 +1,7 @@
 import argparse
 
-from app import server_builder
+from app import get_server
 
-
-server = server_builder()
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="binance trading bot launcher")
@@ -13,4 +11,5 @@ if __name__ == "__main__":
     parser.add_argument("-p", "--port", type=int, default=5000, help="port number")
     args = parser.parse_args()
 
+    server = get_server()
     server.run(args.address, args.port)
