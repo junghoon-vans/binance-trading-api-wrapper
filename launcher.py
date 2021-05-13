@@ -1,6 +1,6 @@
 import argparse
 
-from app import get_server
+from app import binding_api, get_server
 
 
 if __name__ == "__main__":
@@ -12,4 +12,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     server = get_server()
+    binding_api(server)
     server.run(args.address, args.port)
