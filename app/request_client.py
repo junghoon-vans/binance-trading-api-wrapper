@@ -6,11 +6,14 @@ from binance_f import RequestClient
 request_client: Optional[Flask] = None
 
 
-def set_request_client(server: Flask):
+def set_request_client(server: Flask, network: str):
     global request_client
+
+    network_config = server.config.get(network)
     request_client = RequestClient(
-        api_key=server.config.get("g_api_key"),
-        secret_key=server.config.get("g_secret_key"),
+        api_key=network_config.get("api_key"),
+        secret_key=network_config.get("secret_key"),
+        url=network_config.get("url"),
     )
 
 

@@ -11,12 +11,12 @@ from app.request_client import set_request_client
 server: Optional[Flask] = None
 
 
-def get_server() -> Flask:
+def get_server(network: str) -> Flask:
     global server
     if server is None:
         server = Flask(__name__)
         server.config.update(load_config("default"))
-    set_request_client(server)
+    set_request_client(server, network)
     return server
 
 
