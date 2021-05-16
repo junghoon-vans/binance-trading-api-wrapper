@@ -1,6 +1,3 @@
-from enum import Enum
-
-
-class Network(Enum):
+class Network:
     mainnet = "mainnet"
     testnet = "testnet"

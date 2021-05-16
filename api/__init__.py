@@ -1,6 +1,7 @@
 from typing import Any, Dict, Optional, NamedTuple, cast
 
 from flask import Flask
+from flask.config import Config
 from flask_restful import Api
 
 from binance_f import RequestClient
@@ -26,14 +27,8 @@ def get_server(network: str = "", filename: str = "") -> Server:
         app.config.update(load_config(filename))
         api = Api(app)
 
-        request_client = None
-        network_config = cast(Dict[Any, Any], app.config.get("network"))
-        if network == Network.mainnet.value:
-            request_client = MainnetClient(network_config)
-        elif network == Network.testnet.value:
-            request_client = TestnetClient(network_config)
-        else:
-            raise Exception("only mainnet or testnet can be selected as network.")
+        network_config = get_network_config(app.config)
+        request_client = create_request_client(network, network_config)
 
         server = Server(
             app=app,
@@ -41,3 +36,18 @@ def get_server(network: str = "", filename: str = "") -> Server:
             request=request_client,
         )
     return server
+
+
+def get_network_config(config: Config):
+    return cast(Dict[Any, Any], config.get("network"))
+
+
+def create_request_client(
+    network: str, network_config: Dict[Any, Any]
+) -> RequestClient:
+    if network == Network.mainnet:
+        return MainnetClient(network_config)
+    elif network == Network.testnet:
+        return TestnetClient(network_config)
+    else:
+        raise Exception("only mainnet or testnet can be selected as network.")
