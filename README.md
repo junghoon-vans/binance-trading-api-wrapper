@@ -73,3 +73,8 @@ Components
 ├── requirements.txt
 └── setup.cfg
 ```
+
+About
+---
+
+This project is for trading on Binance by triggering an alarm in the Trading View strategy. For this, I used [Binance's official SDK](https://github.com/Binance-docs/Binance_Futures_python/tree/e22898d440531c94a1f2d9e8ae49009979a70c96). Detailed information related to SDK can be found through the [official api document](https://binance-docs.github.io/apidocs/futures/en).
