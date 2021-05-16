@@ -21,10 +21,17 @@ if __name__ == "__main__":
         "--network",
         type=str,
         default="mainnet",
-        help="select mainnet or testnet as spot network",
+        help="select mainnet or testnet to binance network",
+    )
+    parser.add_argument(
+        "-f",
+        "--filename",
+        type=str,
+        default="production",
+        help="configuration filename to configure api server",
     )
     args = parser.parse_args()
 
-    server = get_server(network=args.network)
+    server = get_server(network=args.network, filename=args.filename)
     binding_route(server.api)
     server.app.run(args.address, args.port)

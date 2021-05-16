@@ -20,24 +20,27 @@ cd ....
 pip install -r requirements.txt
 ```
 
-### configs
+### Configuration
 
-config files formmated in `.yaml` are in [/configs](/configs).
+configuration files using `YAML` format are in [/configs](/configs).
 
 ```
-cp example.yaml default.yaml
+cp example.yaml production.yaml
+cp example.yaml development.yaml
+cp example.yaml testing.yaml
 ```
 
-you can easily create `default.yaml` by copying [example.yaml](/configs/example.yaml). before running on the server, you need to set `api_key` and `secret_key` first.
+you can easily create `config files` by copying [example.yaml](/configs/example.yaml). before running on the server, you need to set `api_key` and `secret_key` first.
 
 ### Start launcher
 
 ```bash
-python launcher [-h][-a][-p][-n] # help, address, port, network
-python launcher -n testnet
+python launcher [-h][-a][-p][-n][-f] # help, address, port, network, filename
+python launcher -n testnet # run server with testnet
+python launcher -f development # apply development.yaml to configure file
 ```
 
-`launcher.py` runs with `address=0.0.0.0`, `port=5000`, `network=mainnet` if there are no arguments.
+`launcher.py` runs with `address=0.0.0.0`, `port=5000`, `network=mainnet`, `filename=production` if there are no arguments.
 
 Components
 ---
@@ -58,7 +61,10 @@ Components
 │   ├── network.py
 │   └── request_client.py
 ├── configs
+│   └── development.yaml
 │   └── example.yaml
+│   └── production.yaml
+│   └── testing.yaml
 ├── .gitignore
 ├── .gitmodules
 ├── .pre-commit-config.yaml

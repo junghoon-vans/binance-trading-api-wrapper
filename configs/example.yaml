@@ -1,12 +1,14 @@
-ENV: development
+# flask
+ENV: production
 DEBUG: True
 
+# binance api
 network:
   mainnet:
-    url: "https://fapi.binance.com/"
-    api_key: "s3ibT86bILkqjwdaQHJCR9S0JAiOSX6DgZsuMtvOcNAezsuo7KXbmWt11uJ0Pfys"
-    secret_key: "5EzacPxveeGaBLC89FPsZ6Yi4NG1ekcaDP1nWtpTyZtD1wSvBRyLVZS1MNHzyyKI"
+    url: https://fapi.binance.com/
+    api_key: s3ibT86bILkqjwdaQHJCR9S0JAiOSX6DgZsuMtvOcNAezsuo7KXbmWt11uJ0Pfys
+    secret_key: 5EzacPxveeGaBLC89FPsZ6Yi4NG1ekcaDP1nWtpTyZtD1wSvBRyLVZS1MNHzyyKI
   testnet:
-    url: "https://testnet.binancefuture.com"
-    api_key: "FR2u7tGRQ8xR3La6YdSOtuepQHsMUckNuIFIlLXIpywNCaKjF9MR7drjfx0nab1L"
-    secret_key: "SYqv68ntdT5PNNgcMTeeuny77O9WRCHqg4vZWUlXHcduqtFGqBmuf8cqlb2576tB"
+    url: https://testnet.binancefuture.com
+    api_key: FR2u7tGRQ8xR3La6YdSOtuepQHsMUckNuIFIlLXIpywNCaKjF9MR7drjfx0nab1L
+    secret_key: SYqv68ntdT5PNNgcMTeeuny77O9WRCHqg4vZWUlXHcduqtFGqBmuf8cqlb2576tB

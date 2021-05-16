@@ -4,7 +4,9 @@
 
 ### config ###
 
-configs/default.yaml
+configs/production.yaml
+configs/development.yaml
+configs/testing.yaml
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

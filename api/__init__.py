@@ -19,11 +19,11 @@ class Server(NamedTuple):
 server: Optional[Server] = None
 
 
-def get_server(network: str = "") -> Server:
+def get_server(network: str = "", filename: str = "") -> Server:
     global server
     if server is None:
         app = Flask(__name__)
-        app.config.update(load_config("default"))
+        app.config.update(load_config(filename))
         api = Api(app)
 
         request_client = None
