@@ -5,9 +5,9 @@ from flask_restful import Api
 
 from binance_f import RequestClient
 
-from app.utils.config_proxy import load_config
-from app.request_client import MainnetClient, TestnetClient
-from app.network import Network
+from api.utils.config_proxy import load_config
+from api.request_client import MainnetClient, TestnetClient
+from api.network import Network
 
 
 class Server(NamedTuple):
@@ -33,7 +33,7 @@ def get_server(network: str = "") -> Server:
         elif network == Network.testnet.value:
             request_client = TestnetClient(network_config)
         else:
-            raise Exception("only mainnet or testnet can be selected.")
+            raise Exception("only mainnet or testnet can be selected as network.")
 
         server = Server(
             app=app,

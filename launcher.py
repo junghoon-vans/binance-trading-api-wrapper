@@ -1,7 +1,7 @@
 import argparse
 
-from app import get_server
-from app.route import binding_route
+from api import get_server
+from api.route import binding_route
 
 
 if __name__ == "__main__":

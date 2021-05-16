@@ -14,7 +14,7 @@ git submodule update --init --recursive # download submodule source code
 ### Install dependency packages
 
 ```bash
-cd app/utils/binance-futures/
+cd api/lib/binance-futures/
 python setup.py install # binance-futures package
 cd ....
 pip install -r requirements.txt
@@ -44,16 +44,19 @@ Components
 
 ```
 .
-├── app
-│   ├── __init__.py
-│   ├── request_client.py
+├── api
+│   ├── lib
+│   │   └── binance-futures
+│   │   └── __init__.py
 │   ├── route
 │   │   ├── __init__.py
 │   │   └── trade.py
-│   └── utils
-│       └── binance-futures
-│       └── __init__.py
-│       └── config_proxy.py
+│   ├── utils
+│   │   ├── __init__.py
+│   │   └── config_proxy.py
+│   ├── __init__.py
+│   ├── network.py
+│   └── request_client.py
 ├── configs
 │   └── example.yaml
 ├── .gitignore
