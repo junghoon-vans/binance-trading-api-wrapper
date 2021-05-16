@@ -5,7 +5,7 @@ from api.route import binding_route
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="binance trading bot launcher")
+    parser = argparse.ArgumentParser(description="binance trading api launcher")
     parser.add_argument(
         "-a",
         "--address",
