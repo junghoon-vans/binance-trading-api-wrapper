@@ -1,6 +1,7 @@
 import argparse
 
-from app import binding_api, get_server
+from app import get_server
+from app.route import binding_route
 
 
 if __name__ == "__main__":
@@ -24,6 +25,6 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    server = get_server(args.network)
-    binding_api(server)
-    server.run(args.address, args.port)
+    server = get_server(network=args.network)
+    binding_route(server.api)
+    server.app.run(args.address, args.port)

@@ -1,21 +1,15 @@
-from typing import Optional
-from flask import Flask
+from typing import Any, Dict
+
 from binance_f import RequestClient
 
 
-request_client: Optional[Flask] = None
+class MainnetClient(RequestClient):
+    def __init__(self, network_config: Dict[Any, Any]):
+        config = network_config.get("mainnet")
+        super().__init__(**config)
 
 
-def set_request_client(server: Flask, network: str):
-    global request_client
-
-    network_config = server.config.get(network)
-    request_client = RequestClient(
-        api_key=network_config.get("api_key"),
-        secret_key=network_config.get("secret_key"),
-        url=network_config.get("url"),
-    )
-
-
-def get_request_client():
-    return request_client
+class TestnetClient(RequestClient):
+    def __init__(self, network_config: Dict[Any, Any]):
+        config = network_config.get("testnet")
+        super().__init__(**config)

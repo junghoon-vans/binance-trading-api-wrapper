@@ -1,4 +1,4 @@
-Tradingview Binance Trading Bot
+Tradingview Binance Trading API
 ===
 
 Usage
@@ -7,7 +7,7 @@ Usage
 ### Clone this project
 
 ```bash
-git clone https://github.com/Jeonghun-Ban/tradingview-binance-trading-bot.git
+git clone https://github.com/Jeonghun-Ban/tradingview-binance-trading-api.git
 git submodule update --init --recursive # download submodule source code
 ```
 
