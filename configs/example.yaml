@@ -2,6 +2,16 @@
 ENV: production
 DEBUG: True
 
+# swagger
+SWAGGER:
+  title: binance trading API
+  version: 0.0.1
+  uiversion: 3
+  openapi: 3.0.0
+  static_url_path: /flasgger_static
+  swagger_ui: True
+  specs_route: /apidocs/
+
 # binance api
 network:
   mainnet:
