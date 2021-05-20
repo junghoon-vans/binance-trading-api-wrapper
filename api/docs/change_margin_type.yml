@@ -1,0 +1,17 @@
+Change margin type to isolated or crossed
+---
+tags:
+  - trade
+parameters:
+  - name: symbol
+    in: query
+    type: string
+    required: true
+  - name: marginType
+    in: query
+    type: string
+    enum: ['ISOLATED', 'CROSSED']
+    required: true
+responses:
+  "200":
+    description: successful changed

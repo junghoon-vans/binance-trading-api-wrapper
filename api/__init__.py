@@ -4,6 +4,8 @@ from flask import Flask
 from flask.config import Config
 from flask_restful import Api
 
+from flasgger import Swagger
+
 from binance_f import RequestClient
 
 from api.utils.config_proxy import load_config
@@ -14,6 +16,7 @@ from api.network import Network
 class Server(NamedTuple):
     app: Flask
     api: Api
+    swagger: Swagger
     request: RequestClient
 
 
@@ -26,6 +29,7 @@ def get_server(network: str = "", filename: str = "") -> Server:
         app = Flask(__name__)
         app.config.update(load_config(filename))
         api = Api(app)
+        swagger = Swagger(app, parse=True)
 
         network_config = get_network_config(app.config)
         request_client = create_request_client(network, network_config)
@@ -33,6 +37,7 @@ def get_server(network: str = "", filename: str = "") -> Server:
         server = Server(
             app=app,
             api=api,
+            swagger=swagger,
             request=request_client,
         )
     return server

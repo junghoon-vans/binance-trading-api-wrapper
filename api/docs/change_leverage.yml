@@ -1,0 +1,16 @@
+Change leverage
+---
+tags:
+  - trade
+parameters:
+  - name: symbol
+    in: query
+    type: string
+    required: true
+  - name: leverage
+    in: query
+    type: integer
+    required: true
+responses:
+  "200":
+    description: successful operation
