@@ -48,6 +48,10 @@ Components
 ```
 .
 ├── api
+│   ├── docs
+│   │   └── change_leverage.yml
+│   │   └── change_margin_type.yml
+│   │   └── post_order.yml
 │   ├── lib
 │   │   └── binance-futures
 │   │   └── __init__.py
