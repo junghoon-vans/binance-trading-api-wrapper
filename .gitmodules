@@ -1,3 +1,0 @@
-[submodule "api/lib/binance-futures"]
-	path = api/lib/binance-futures
-	url = https://github.com/Binance-docs/Binance_Futures_python.git

@@ -1,12 +1,11 @@
 import yaml
 
 
-def load_config(name: str):
-    config_file = get_config_file(name)
+def load_config(env: str):
+    config_file = get_config_file(env)
     with open(config_file) as f:
-        config = yaml.load(f, Loader=yaml.FullLoader)
-        return config
+        return yaml.load(f, Loader=yaml.FullLoader)
 
 
-def get_config_file(name: str):
-    return "configs/" + name + ".yaml"
+def get_config_file(env: str):
+    return "configs/" + env + ".yaml"

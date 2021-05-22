@@ -14,9 +14,6 @@ git submodule update --init --recursive # download submodule source code
 ### Install dependency packages
 
 ```bash
-cd api/lib/binance-futures/
-python setup.py install # binance-futures package
-cd ....
 pip install -r requirements.txt
 ```
 
@@ -35,12 +32,14 @@ you can easily create `config files` by copying [example.yaml](/configs/example.
 ### Start launcher
 
 ```bash
-python launcher [-h][-a][-p][-n][-f] # help, address, port, network, filename
-python launcher -n testnet # run server with testnet
-python launcher -f development # apply development.yaml to configure file
+python launcher [-h][-a][-p][-e] # help, address, port, environment
+python launcher -e development # run server with development env
+python launcher -e testing # run server with testing env
 ```
 
-`launcher.py` runs with `address=0.0.0.0`, `port=5000`, `network=mainnet`, `filename=production` if there are no arguments.
+`launcher.py` runs with `address=0.0.0.0`, `port=5000`, `environment=production` if there are no arguments.
+
+> The testing environment connects to the Binance testnet. Therefore, you need to set `api_key`, `api_secret` in the configuration file before executing server.
 
 Components
 ---
@@ -52,9 +51,6 @@ Components
 │   │   └── change_leverage.yml
 │   │   └── change_margin_type.yml
 │   │   └── post_order.yml
-│   ├── lib
-│   │   └── binance-futures
-│   │   └── __init__.py
 │   ├── route
 │   │   ├── __init__.py
 │   │   └── trade.py
@@ -62,8 +58,8 @@ Components
 │   │   ├── __init__.py
 │   │   └── config_proxy.py
 │   ├── __init__.py
-│   ├── network.py
-│   └── request_client.py
+│   ├── client.py
+│   └── environment.py
 ├── configs
 │   └── development.yaml
 │   └── example.yaml
