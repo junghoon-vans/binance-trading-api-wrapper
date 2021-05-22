@@ -4,12 +4,10 @@ from binance import Client
 
 
 class MainnetClient(Client):
-    def __init__(self, network_config: Dict[Any, Any]):
-        config = network_config.get("mainnet")
+    def __init__(self, config: Dict[Any, Any]):
         super().__init__(**config)
 
 
 class TestnetClient(Client):
-    def __init__(self, network_config: Dict[Any, Any]):
-        config = network_config.get("testnet")
+    def __init__(self, config: Dict[Any, Any]):
         super().__init__(**config, testnet=True)

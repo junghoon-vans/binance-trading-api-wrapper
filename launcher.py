@@ -17,21 +17,14 @@ if __name__ == "__main__":
         "-p", "--port", type=int, default=5000, help="port number binding HTTP server"
     )
     parser.add_argument(
-        "-n",
-        "--network",
-        type=str,
-        default="mainnet",
-        help="select mainnet or testnet to binance network",
-    )
-    parser.add_argument(
-        "-f",
-        "--filename",
+        "-e",
+        "--environment",
         type=str,
         default="production",
-        help="configuration filename to configure api server",
+        help="environment to running api server",
     )
     args = parser.parse_args()
 
-    server = get_server(network=args.network, filename=args.filename)
+    server = get_server(env=args.environment)
     init_route(server.api)
     server.app.run(args.address, args.port)
