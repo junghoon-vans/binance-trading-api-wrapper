@@ -6,10 +6,10 @@ from flask_restful import Api
 
 from flasgger import Swagger
 
-from binance_f import RequestClient
+from binance import Client
 
 from api.utils.config_proxy import load_config
-from api.request_client import MainnetClient, TestnetClient
+from api.client import MainnetClient, TestnetClient
 from api.network import Network
 
 
@@ -17,7 +17,7 @@ class Server(NamedTuple):
     app: Flask
     api: Api
     swagger: Swagger
-    request: RequestClient
+    request: Client
 
 
 server: Optional[Server] = None
@@ -32,13 +32,13 @@ def get_server(network: str = "", filename: str = "") -> Server:
         swagger = Swagger(app, parse=True)
 
         network_config = get_network_config(app.config)
-        request_client = create_request_client(network, network_config)
+        client = create_client(network, network_config)
 
         server = Server(
             app=app,
             api=api,
             swagger=swagger,
-            request=request_client,
+            request=client,
         )
     return server
 
@@ -47,9 +47,7 @@ def get_network_config(config: Config):
     return cast(Dict[Any, Any], config.get("network"))
 
 
-def create_request_client(
-    network: str, network_config: Dict[Any, Any]
-) -> RequestClient:
+def create_client(network: str, network_config: Dict[Any, Any]) -> Client:
     if network == Network.mainnet:
         return MainnetClient(network_config)
     elif network == Network.testnet:

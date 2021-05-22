@@ -1,15 +1,15 @@
 from typing import Any, Dict
 
-from binance_f import RequestClient
+from binance import Client
 
 
-class MainnetClient(RequestClient):
+class MainnetClient(Client):
     def __init__(self, network_config: Dict[Any, Any]):
         config = network_config.get("mainnet")
         super().__init__(**config)
 
 
-class TestnetClient(RequestClient):
+class TestnetClient(Client):
     def __init__(self, network_config: Dict[Any, Any]):
         config = network_config.get("testnet")
-        super().__init__(**config)
+        super().__init__(**config, testnet=True)

@@ -57,7 +57,7 @@ Components
 │   │   └── config_proxy.py
 │   ├── __init__.py
 │   ├── network.py
-│   └── request_client.py
+│   └── client.py
 ├── configs
 │   └── development.yaml
 │   └── example.yaml
