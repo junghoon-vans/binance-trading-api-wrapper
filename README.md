@@ -14,9 +14,6 @@ git submodule update --init --recursive # download submodule source code
 ### Install dependency packages
 
 ```bash
-cd api/lib/binance-futures/
-python setup.py install # binance-futures package
-cd ....
 pip install -r requirements.txt
 ```
 
@@ -52,9 +49,6 @@ Components
 │   │   └── change_leverage.yml
 │   │   └── change_margin_type.yml
 │   │   └── post_order.yml
-│   ├── lib
-│   │   └── binance-futures
-│   │   └── __init__.py
 │   ├── route
 │   │   ├── __init__.py
 │   │   └── trade.py
