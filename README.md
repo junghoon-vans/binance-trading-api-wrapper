@@ -47,12 +47,11 @@ Components
 ```
 .
 ├── api
-│   ├── docs
-│   │   └── change_leverage.yml
-│   │   └── change_margin_type.yml
-│   │   └── post_order.yml
 │   ├── route
 │   │   └── __init__.py
+│   │   └── account.py
+│   │   └── default.py
+│   │   └── market.py
 │   │   └── trade.py
 │   ├── utils
 │   │   ├── __init__.py
