@@ -1,4 +1,4 @@
-Tradingview Binance Trading API
+Binance Trading API
 ===
 
 Usage
@@ -76,4 +76,4 @@ Components
 About
 ---
 
-This project is for trading on Binance by triggering an alarm in the Trading View strategy. For this, I used [python-binance](https://github.com/sammchardy/python-binance). Detailed information related to the package can be found through [this document page](https://python-binance.readthedocs.io/en/latest/index.html#).
+This project is for trading on Binance by api call such as tradingview strategy alert. For this, I used [python-binance](https://github.com/sammchardy/python-binance). Detailed information related to the package can be found through [this document page](https://python-binance.readthedocs.io/en/latest/index.html#).
