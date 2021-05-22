@@ -1,9 +1,7 @@
-from flask_restful import Api
+from flask import Flask
 
-from api.route.trade import ChangeMarginType, ChangeLeverage, PostOrder
+from .trade import register_trade_route
 
 
-def init_route(api: Api):
-    api.add_resource(ChangeMarginType, "/trade/change_margin_type")
-    api.add_resource(ChangeLeverage, "/trade/change_leverage")
-    api.add_resource(PostOrder, "/trade/post_order")
+def init_route(app: Flask):
+    register_trade_route(app)

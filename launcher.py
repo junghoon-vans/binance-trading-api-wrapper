@@ -26,5 +26,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     server = get_server(env=args.environment)
-    init_route(server.api)
+    init_route(server.app)
     server.app.run(args.address, args.port)

@@ -2,7 +2,6 @@ from typing import Any, Dict, Optional, NamedTuple, cast
 
 from flask import Flask
 from flask.config import Config
-from flask_restful import Api
 
 from flasgger import Swagger
 
@@ -15,7 +14,6 @@ from api.environment import Environment
 
 class Server(NamedTuple):
     app: Flask
-    api: Api
     swagger: Swagger
     request: Client
 
@@ -28,7 +26,6 @@ def get_server(env: str = "") -> Server:
     if server is None:
         app = Flask(__name__)
         app.config.update(load_config(env))
-        api = Api(app)
         swagger = Swagger(app, parse=True)
 
         binance_config = get_config(config=app.config, name="binance")
@@ -36,7 +33,6 @@ def get_server(env: str = "") -> Server:
 
         server = Server(
             app=app,
-            api=api,
             swagger=swagger,
             request=client,
         )
