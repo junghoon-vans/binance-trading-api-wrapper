@@ -1,71 +1,62 @@
-from flask import request
-from flask_restful import Api, Resource
+from flask import Blueprint, request
 
 from api import get_server
 
 
-def register_account_route(api: Api):
-    api.add_resource(AccountTransfer, "/account_transfer")
-    api.add_resource(TransferHistory, "/transfer_history")
-    api.add_resource(AccountBalance, "/account_balance")
-    api.add_resource(Account, "/account")
-    api.add_resource(PositionInformation, "/position_information")
-    api.add_resource(AccountTrades, "/account_trades")
-    api.add_resource(IncomeHistory, "/income_history")
-    api.add_resource(LeverageBracket, "/leverage_bracket")
+blueprint = Blueprint("account", __name__, url_prefix="/account")
 
 
-class AccountTransfer(Resource):
-    def get(self):
-        server = get_server()
-        params = request.args.to_dict()
-        return server.request.futures_account_transfer(**params)
+@blueprint.route("/account_transfer/")
+def account_transfer():
+    server = get_server()
+    params = request.args.to_dict()
+    return server.request.futures_account_transfer(**params)
 
 
-class TransferHistory(Resource):
-    def get(self):
-        server = get_server()
-        params = request.args.to_dict()
-        return server.request.transfer_history(**params)
+@blueprint.route("/transfer_history/")
+def transfer_history():
+    server = get_server()
+    params = request.args.to_dict()
+    return server.request.transfer_history(**params)
 
 
-class AccountBalance(Resource):
-    def get(self):
-        server = get_server()
-        params = request.args.to_dict()
-        return server.request.futures_account_balance(**params)
+@blueprint.route("/account_balance/")
+def account_balance():
+    server = get_server()
+    params = request.args.to_dict()
+    return server.request.futures_account_balance(**params)
 
 
-class Account(Resource):
-    def get(self):
-        server = get_server()
-        params = request.args.to_dict()
-        return server.request.futures_account(**params)
+@blueprint.route("/account/")
+def account():
+    server = get_server()
+    params = request.args.to_dict()
+    return server.request.futures_account(**params)
 
 
-class PositionInformation(Resource):
-    def get(self):
-        server = get_server()
-        params = request.args.to_dict()
-        return server.request.futures_position_information(**params)
+@blueprint.route("/position_information/")
+def position_information():
+    server = get_server()
+    params = request.args.to_dict()
+    return server.request.futures_position_information(**params)
 
 
-class AccountTrades(Resource):
-    def get(self):
-        server = get_server()
-        params = request.args.to_dict()
-        return server.request.futures_account_trades(**params)
+@blueprint.route("/account_trades/")
+def account_trades():
+    server = get_server()
+    params = request.args.to_dict()
+    return server.request.futures_account_trades(**params)
 
 
-class IncomeHistory(Resource):
-    def get(self):
-        server = get_server()
-        params = request.args.to_dict()
-        return server.request.futures_income_history(**params)
+@blueprint.route("/income_history/")
+def income_history():
+    server = get_server()
+    params = request.args.to_dict()
+    return server.request.futures_income_history(**params)
 
 
-class LeverageBracket(Resource):
-    def get(self):
-        server = get_server()
-        params = request.args.to_dict()
-        return server.request.futures_leverage_bracket(**params)
+@blueprint.route("/leverage_bracket/")
+def leverage_bracket():
+    server = get_server()
+    params = request.args.to_dict()
+    return server.request.futures_leverage_bracket(**params)
