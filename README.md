@@ -65,7 +65,6 @@ Components
 │   └── production.yaml
 │   └── testing.yaml
 ├── .gitignore
-├── .gitmodules
 ├── .pre-commit-config.yaml
 ├── launcher.py
 ├── README.md
