@@ -33,12 +33,12 @@ def stream_get_listen_key():
 @blueprint.route("/stream_keepalive/")
 def stream_keepalive():
     server = get_server()
-    params = request.args.to_dict()
-    return server.request.futures_stream_keepalive(**params)
+    listenKey = request.args.get("listenKey")
+    return server.request.futures_stream_keepalive(listenKey=listenKey)
 
 
 @blueprint.route("/stream_close/")
-def futures_stream_close():
+def stream_close():
     server = get_server()
-    params = request.args.to_dict()
-    return server.request.futures_stream_close(**params)
+    listenKey = request.args.get("listenKey")
+    return server.request.futures_stream_close(listenKey=listenKey)
