@@ -24,21 +24,14 @@ def exchange_info():
     return server.request.futures_exchange_info()
 
 
-@blueprint.route("/stream_get_listen_key/")
-def stream_get_listen_key():
+@blueprint.route("/stream/", methods=('GET', 'PUT', 'DELETE'))
+def stream():
     server = get_server()
-    return server.request.futures_stream_get_listen_key()
-
-
-@blueprint.route("/stream_keepalive/")
-def stream_keepalive():
-    server = get_server()
-    listenKey = request.args.get("listenKey")
-    return server.request.futures_stream_keepalive(listenKey=listenKey)
-
-
-@blueprint.route("/stream_close/")
-def stream_close():
-    server = get_server()
-    listenKey = request.args.get("listenKey")
-    return server.request.futures_stream_close(listenKey=listenKey)
+    if request.method == 'GET':
+        return server.request.futures_stream_get_listen_key()
+    elif request.method == 'PUT':
+        listenKey = request.args.get("listenKey")
+        return server.request.futures_stream_keepalive(listenKey=listenKey)
+    elif request.method == 'DELETE':
+        listenKey = request.args.get("listenKey")
+        return server.request.futures_stream_close(listenKey=listenKey)
