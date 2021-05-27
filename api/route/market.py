@@ -109,4 +109,3 @@ def open_interest_statistics():
     params = request.args.to_dict()
     server = get_server()
     return server.request.futures_open_interest_hist(**params)
-
