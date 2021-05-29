@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, jsonify
 
 from api import get_server
 
@@ -6,106 +6,136 @@ from api import get_server
 blueprint = Blueprint("market", __name__, url_prefix="/market")
 
 
-@blueprint.route("/depth/")
+@blueprint.route("/depth")
 def order_book():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_order_book(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_order_book(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/trades/")
+@blueprint.route("/trades")
 def recent_trades_list():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_recent_trades(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_recent_trades(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/trades/historical/")
+@blueprint.route("/trades/historical")
 def old_trades_lookup():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_historical_trades(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_historical_trades(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/trades/aggregate/")
+@blueprint.route("/trades/aggregate")
 def aggregate_trades_list():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_aggregate_trades(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_aggregate_trades(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/klines/")
+@blueprint.route("/klines")
 def klines_or_candle_data():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_klines(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_klines(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/klines/continous/")
+@blueprint.route("/klines/continous")
 def continous_klines_or_candle_data():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_continous_klines(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_continous_klines(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/klines/historical/")
+@blueprint.route("/klines/historical")
 def historical_klines():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_historical_klines(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_historical_klines(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/klines/historical/generator/")
+@blueprint.route("/klines/historical/generator")
 def historical_klines_generator():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_historical_klines_generator(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_historical_klines_generator(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/mark-price/")
+@blueprint.route("/mark-price")
 def mark_price():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_mark_price(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_mark_price(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/funding-rate/")
+@blueprint.route("/funding-rate")
 def get_funding_rate_history():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_funding_rate(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_funding_rate(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/ticker/24h/")
+@blueprint.route("/ticker/24h")
 def ticker_price_change_statistics():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_ticker(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_ticker(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/ticker/price/")
+@blueprint.route("/ticker/price")
 def symbol_price_ticker():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_symbol_ticker(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_symbol_ticker(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/ticker/depth/")
+@blueprint.route("/ticker/depth")
 def symbol_orderbook_ticker():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_orderbook_ticker(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_orderbook_ticker(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/open-interest/")
+@blueprint.route("/open-interest")
 def open_interest():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_open_interest(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_open_interest(**params)
+
+    return jsonify(result)
 
 
-@blueprint.route("/open-interest/statistics/")
+@blueprint.route("/open-interest/statistics")
 def open_interest_statistics():
-    params = request.args.to_dict()
     server = get_server()
-    return server.request.futures_open_interest_hist(**params)
+    params = request.args.to_dict()
+    result = server.request.futures_open_interest_hist(**params)
+
+    return jsonify(result)
