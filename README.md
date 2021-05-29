@@ -1,6 +1,11 @@
 Binance Trading API
 ===
 
+About
+---
+
+This project is for trading on Binance by api call such as tradingview strategy alert. For this, I used [python-binance](https://github.com/sammchardy/python-binance). Detailed information related to the package can be found through [this document page](https://python-binance.readthedocs.io/en/latest/index.html#).
+
 Usage
 ---
 
@@ -8,7 +13,6 @@ Usage
 
 ```bash
 git clone https://github.com/Jeonghun-Ban/tradingview-binance-trading-api.git
-git submodule update --init --recursive # download submodule source code
 ```
 
 ### Install dependency packages
@@ -71,8 +75,3 @@ Components
 ├── requirements.txt
 └── setup.cfg
 ```
-
-About
----
-
-This project is for trading on Binance by api call such as tradingview strategy alert. For this, I used [python-binance](https://github.com/sammchardy/python-binance). Detailed information related to the package can be found through [this document page](https://python-binance.readthedocs.io/en/latest/index.html#).
