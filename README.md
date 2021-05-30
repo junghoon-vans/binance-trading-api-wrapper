@@ -4,7 +4,7 @@ Binance Trading API
 About
 ---
 
-This project is for trading on Binance by api call such as tradingview strategy alert. For this, I used [python-binance](https://github.com/sammchardy/python-binance). Detailed information related to the package can be found through [this document page](https://python-binance.readthedocs.io/en/latest/index.html#).
+This project is for futures trading on Binance by api call such as tradingview strategy alert. For this, I used [python-binance](https://github.com/sammchardy/python-binance). Detailed information related to the package can be found through [this document page](https://python-binance.readthedocs.io/en/latest/index.html#).
 
 Usage
 ---
@@ -12,7 +12,7 @@ Usage
 ### Clone this project
 
 ```bash
-git clone https://github.com/Jeonghun-Ban/tradingview-binance-trading-api.git
+git clone https://github.com/Jeonghun-Ban/binance-trading-api.git
 ```
 
 ### Install dependency packages
@@ -23,7 +23,9 @@ pip install -r requirements.txt
 
 ### Configuration
 
-configuration files using `YAML` format are in [/configs](/configs).
+#### 1. config files
+
+Configuration files using `YAML` format are in [/configs](/configs).
 
 ```
 cp example.yaml production.yaml
@@ -31,7 +33,20 @@ cp example.yaml development.yaml
 cp example.yaml testing.yaml
 ```
 
-you can easily create `config files` by copying [example.yaml](/configs/example.yaml). before running on the server, you need to set `api_key` and `secret_key` first.
+You can easily create `config files` by copying [example.yaml](/configs/example.yaml). 
+
+#### 2. Environment variable
+
+Register `api key`, `secret key` in `environment variable` for accessing binance network before running on the server.
+
+- BINANCE_TESTNET_API_KEY
+- BINANCE_TESTNET_SECRET_KEY
+- BINANCE_MAINNET_API_KEY
+- BINANCE_MAINNET_SECRET_KEY
+
+The environment variable name is set as above.
+
+> if you only access mainnet, you don't need to register testnet keys.
 
 ### Start launcher
 
@@ -43,7 +58,7 @@ python launcher -e testing # run server with testing env
 
 `launcher.py` runs with `address=0.0.0.0`, `port=5000`, `environment=production` if there are no arguments.
 
-> The testing environment connects to the Binance testnet. Therefore, you need to set `api_key`, `api_secret` in the configuration file before executing server.
+> The testing environment connects to the Binance testnet. Therefore, you need to set `api_key`, `api_secret` as `environment variable` before executing server.
 
 Components
 ---

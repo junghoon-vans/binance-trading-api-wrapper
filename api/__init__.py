@@ -1,7 +1,7 @@
-from typing import Any, Dict, Optional, NamedTuple, cast
+import os
+from typing import Optional, NamedTuple
 
 from flask import Flask
-from flask.config import Config
 
 from binance import Client
 
@@ -23,9 +23,7 @@ def get_server(env: str = "") -> Server:
     if server is None:
         app = Flask(__name__)
         app.config.update(load_config(env))
-
-        binance_config = get_config(config=app.config, name="binance")
-        client = create_client(env=env, config=binance_config)
+        client = create_client(env=env)
 
         server = Server(
             app=app,
@@ -34,11 +32,12 @@ def get_server(env: str = "") -> Server:
     return server
 
 
-def get_config(config: Config, name: str):
-    return cast(Dict[Any, Any], config.get(name))
-
-
-def create_client(env: str, config: Dict[Any, Any]) -> Client:
+def create_client(env: str) -> Client:
     if env == Environment.testing:
-        return TestnetClient(config)
-    return MainnetClient(config)
+        api_key = os.getenv("BINANCE_TESTNET_API_KEY")
+        api_secret = os.getenv("BINANCE_TESTNET_SECRET_KEY")
+        return TestnetClient(api_key, api_secret)
+    else:
+        api_key = os.getenv("BINANCE_MAINNET_API_KEY")
+        api_secret = os.getenv("BINANCE_MAINNET_SECRET_KEY")
+        return MainnetClient(api_key, api_secret)

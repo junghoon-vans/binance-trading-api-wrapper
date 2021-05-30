@@ -1,8 +1,3 @@
 # flask
 ENV: production
 DEBUG: True
-
-# binance api
-binance:
-  api_key: s3ibT86bILkqjwdaQHJCR9S0JAiOSX6DgZsuMtvOcNAezsuo7KXbmWt11uJ0Pfys
-  api_secret: 5EzacPxveeGaBLC89FPsZ6Yi4NG1ekcaDP1nWtpTyZtD1wSvBRyLVZS1MNHzyyKI
