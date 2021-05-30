@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 
 from api import get_server
+from api.schema import stream_schema
 
 
 blueprint = Blueprint("default", __name__, url_prefix="/")
@@ -34,12 +35,14 @@ def stream():
 
     if request.method == "GET":
         listen_key = server.request.futures_stream_get_listen_key()
-        response = {"listenKey": listen_key}
+        response = stream_schema.dump({"listenKey": listen_key})
     elif request.method == "PUT":
-        listen_key = request.args.get("listenKey")
+        payload = stream_schema.load(request.args.to_dict())
+        listen_key = payload["listenKey"]
         response = server.request.futures_stream_keepalive(listenKey=listen_key)
     elif request.method == "DELETE":
-        listen_key = request.args.get("listenKey")
+        payload = stream_schema.load(request.args.to_dict())
+        listen_key = payload["listenKey"]
         response = server.request.futures_stream_close(listenKey=listen_key)
 
     return jsonify(response)
