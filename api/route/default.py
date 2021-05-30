@@ -39,5 +39,4 @@ def stream() -> Response:
         payload = stream_schema.load(request.args.to_dict())
         listen_key = payload["listenKey"]
         response = jsonify(server.request.futures_stream_close(listenKey=listen_key))
-
     return response
