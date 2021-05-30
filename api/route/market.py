@@ -6,6 +6,13 @@ from api import get_server
 blueprint = Blueprint("market", __name__, url_prefix="/market")
 
 
+@blueprint.route("/exchange-info")
+def exchange_info():
+    server = get_server()
+    response = jsonify(server.request.futures_exchange_info())
+    return response
+
+
 @blueprint.route("/depth")
 def order_book():
     server = get_server()

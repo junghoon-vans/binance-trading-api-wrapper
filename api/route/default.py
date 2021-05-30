@@ -21,13 +21,6 @@ def time():
     return jsonify(response)
 
 
-@blueprint.route("/exchange-info")
-def exchange_info():
-    server = get_server()
-    response = server.request.futures_exchange_info()
-    return jsonify(response)
-
-
 @blueprint.route("/stream", methods=("GET", "PUT", "DELETE"))
 def stream():
     server = get_server()
