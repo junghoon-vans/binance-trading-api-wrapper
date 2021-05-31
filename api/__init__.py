@@ -1,7 +1,8 @@
 import os
 from typing import Optional, NamedTuple
 
-from flask import Flask
+from flask import Flask, jsonify, Response
+from marshmallow import ValidationError
 
 from binance import Client
 
@@ -23,6 +24,7 @@ def get_server(env: str = "") -> Server:
     if server is None:
         app = Flask(__name__)
         app.config.update(load_config(env))
+        app.register_error_handler(ValidationError, _handle_validation_error)
         client = create_client(env=env)
 
         server = Server(
@@ -41,3 +43,9 @@ def create_client(env: str) -> Client:
         api_key = os.getenv("BINANCE_MAINNET_API_KEY")
         api_secret = os.getenv("BINANCE_MAINNET_SECRET_KEY")
         return MainnetClient(api_key, api_secret)
+
+
+def _handle_validation_error(e: ValidationError) -> Response:
+    response = jsonify({"invalidFields": e.normalized_messages()})
+    response.status_code = 400
+    return response
