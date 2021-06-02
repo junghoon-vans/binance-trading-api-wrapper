@@ -55,18 +55,6 @@ class AccountTransferHistorySchema(Schema):
     )
 
 
-class AccountTradesSchema(Schema):
-    symbol = fields.String(
-        required=True,
-    )
-
-
-class AccountPositionInfoSchema(Schema):
-    symbol = fields.String(
-        required=False,
-    )
-
-
 class AccountIncomeHistorySchema(Schema):
     symbol = fields.String(
         required=True,
@@ -105,10 +93,4 @@ class AccountIncomeHistorySchema(Schema):
         metadata={
             "description": "Default 100; max 1000",
         },
-    )
-
-
-class AccountLeverageBracketSchema(Schema):
-    symbol = fields.String(
-        required=False,
     )
