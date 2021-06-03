@@ -1,5 +1,7 @@
 from marshmallow import Schema, fields, validate
 
+from api.enum import IncomeType
+
 
 class AccountTransferSchema(Schema):
     asset = fields.String(
@@ -55,18 +57,6 @@ class AccountTransferHistorySchema(Schema):
     )
 
 
-class AccountTradesSchema(Schema):
-    symbol = fields.String(
-        required=True,
-    )
-
-
-class AccountPositionInfoSchema(Schema):
-    symbol = fields.String(
-        required=False,
-    )
-
-
 class AccountIncomeHistorySchema(Schema):
     symbol = fields.String(
         required=True,
@@ -77,16 +67,7 @@ class AccountIncomeHistorySchema(Schema):
     )
     incomeType = fields.String(
         required=False,
-        validate=validate.OneOf(
-            [
-                "TRANSFER",
-                "WELCOME_BONUS",
-                "REALIZED_PNL",
-                "FUNDING_FEE",
-                "COMMISSION",
-                "INSURANCE_CLEAR",
-            ]
-        ),
+        validate=validate.OneOf([e.value for e in IncomeType]),
     )
     startTime = fields.Number(
         required=False,
@@ -105,10 +86,4 @@ class AccountIncomeHistorySchema(Schema):
         metadata={
             "description": "Default 100; max 1000",
         },
-    )
-
-
-class AccountLeverageBracketSchema(Schema):
-    symbol = fields.String(
-        required=False,
     )
