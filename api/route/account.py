@@ -14,21 +14,21 @@ from api.schema import (
 blueprint = Blueprint("account", __name__, url_prefix="/account")
 
 
-@blueprint.route("/")
+@blueprint.route("/", methods=["GET"])
 def account() -> Response:
     server = get_server()
     response = jsonify(server.request.futures_account())
     return response
 
 
-@blueprint.route("/balance")
+@blueprint.route("/balance", methods=["GET"])
 def account_balance() -> Response:
     server = get_server()
     response = jsonify(server.request.futures_account_balance())
     return response
 
 
-@blueprint.route("/transfer", methods=("GET", "POST"))
+@blueprint.route("/transfer", methods=["GET", "POST"])
 def transfer() -> Response:
     server = get_server()
     response = Response()
@@ -42,7 +42,7 @@ def transfer() -> Response:
     return response
 
 
-@blueprint.route("/trades")
+@blueprint.route("/trades", methods=["GET"])
 def account_trades() -> Response:
     server = get_server()
     params = account_trades_schema.load(request.args.to_dict())
@@ -50,7 +50,7 @@ def account_trades() -> Response:
     return response
 
 
-@blueprint.route("/position")
+@blueprint.route("/position", methods=["GET"])
 def position_information() -> Response:
     server = get_server()
     params = account_postion_info_schema.load(request.args.to_dict())
@@ -58,7 +58,7 @@ def position_information() -> Response:
     return response
 
 
-@blueprint.route("/income")
+@blueprint.route("/income", methods=["GET"])
 def income_history() -> Response:
     server = get_server()
     params = account_income_history_schema.load(request.args.to_dict())
@@ -66,7 +66,7 @@ def income_history() -> Response:
     return response
 
 
-@blueprint.route("/leverage-bracket")
+@blueprint.route("/leverage-bracket", methods=["GET"])
 def leverage_bracket() -> Response:
     server = get_server()
     params = account_leverage_bracket_schema.load(request.args.to_dict())

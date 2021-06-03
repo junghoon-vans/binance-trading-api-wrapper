@@ -7,14 +7,14 @@ from api.schema import ping_schema, time_schema, stream_schema
 blueprint = Blueprint("default", __name__, url_prefix="/")
 
 
-@blueprint.route("/ping")
+@blueprint.route("/ping", methods=["GET"])
 def ping() -> Response:
     server = get_server()
     response = jsonify(ping_schema.dump(server.request.futures_ping()))
     return response
 
 
-@blueprint.route("/time")
+@blueprint.route("/time", methods=["GET"])
 def time() -> Response:
     server = get_server()
     response = jsonify(time_schema.dump(server.request.futures_time()))

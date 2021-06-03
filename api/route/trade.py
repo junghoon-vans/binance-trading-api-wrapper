@@ -55,7 +55,7 @@ def mutiple_orders() -> Response:
     return response
 
 
-@blueprint.route("/order/open")
+@blueprint.route("/order/open", methods=["GET"])
 def get_open_orders() -> Response:
     server = get_server()
     params = trade_get_open_order_schema.load(request.args.to_dict())

@@ -22,14 +22,14 @@ from api.schema import (
 blueprint = Blueprint("market", __name__, url_prefix="/market")
 
 
-@blueprint.route("/exchange")
+@blueprint.route("/exchange", methods=["GET"])
 def exchange_information() -> Response:
     server = get_server()
     response = jsonify(server.request.futures_exchange_info())
     return response
 
 
-@blueprint.route("/depth")
+@blueprint.route("/depth", methods=["GET"])
 def order_book() -> Response:
     server = get_server()
     params = market_order_book_schema.load(request.args.to_dict())
@@ -37,7 +37,7 @@ def order_book() -> Response:
     return response
 
 
-@blueprint.route("/trades")
+@blueprint.route("/trades", methods=["GET"])
 def recent_trades_list() -> Response:
     server = get_server()
     params = market_recent_trades_schema.load(request.args.to_dict())
@@ -45,7 +45,7 @@ def recent_trades_list() -> Response:
     return response
 
 
-@blueprint.route("/trades/aggregate")
+@blueprint.route("/trades/aggregate", methods=["GET"])
 def aggregate_trades_list() -> Response:
     server = get_server()
     params = market_aggregate_trades_schema.load(request.args.to_dict())
@@ -53,7 +53,7 @@ def aggregate_trades_list() -> Response:
     return response
 
 
-@blueprint.route("/klines")
+@blueprint.route("/klines", methods=["GET"])
 def klines_or_candle_data() -> Response:
     server = get_server()
     params = market_klines_schema.load(request.args.to_dict())
@@ -61,7 +61,7 @@ def klines_or_candle_data() -> Response:
     return response
 
 
-@blueprint.route("/klines/continous")
+@blueprint.route("/klines/continous", methods=["GET"])
 def continous_klines_or_candle_data() -> Response:
     server = get_server()
     params = market_continous_klines_schema.load(request.args.to_dict())
@@ -69,7 +69,7 @@ def continous_klines_or_candle_data() -> Response:
     return response
 
 
-@blueprint.route("/klines/historical")
+@blueprint.route("/klines/historical", methods=["GET"])
 def historical_klines() -> Response:
     server = get_server()
     params = market_historical_klines_schema.load(request.args.to_dict())
@@ -77,7 +77,7 @@ def historical_klines() -> Response:
     return response
 
 
-@blueprint.route("/klines/historical/generator")
+@blueprint.route("/klines/historical/generator", methods=["GET"])
 def historical_klines_generator() -> Response:
     server = get_server()
     params = market_historical_klines_generator_schema.load(request.args.to_dict())
@@ -85,7 +85,7 @@ def historical_klines_generator() -> Response:
     return response
 
 
-@blueprint.route("/mark-price")
+@blueprint.route("/mark-price", methods=["GET"])
 def mark_price() -> Response:
     server = get_server()
     params = market_mark_price_schema.load(request.args.to_dict())
@@ -93,7 +93,7 @@ def mark_price() -> Response:
     return response
 
 
-@blueprint.route("/funding-rate")
+@blueprint.route("/funding-rate", methods=["GET"])
 def get_funding_rate_history() -> Response:
     server = get_server()
     params = market_funding_rate_schema.load(request.args.to_dict())
@@ -101,7 +101,7 @@ def get_funding_rate_history() -> Response:
     return response
 
 
-@blueprint.route("/ticker/24h")
+@blueprint.route("/ticker/24h", methods=["GET"])
 def ticker_price_change_statistics() -> Response:
     server = get_server()
     params = market_ticker_price_change_schema.load(request.args.to_dict())
@@ -109,7 +109,7 @@ def ticker_price_change_statistics() -> Response:
     return response
 
 
-@blueprint.route("/ticker/price")
+@blueprint.route("/ticker/price", methods=["GET"])
 def symbol_price_ticker() -> Response:
     server = get_server()
     params = market_symbol_price_ticker_schema.load(request.args.to_dict())
@@ -117,7 +117,7 @@ def symbol_price_ticker() -> Response:
     return response
 
 
-@blueprint.route("/ticker/depth")
+@blueprint.route("/ticker/depth", methods=["GET"])
 def symbol_orderbook_ticker() -> Response:
     server = get_server()
     params = market_symbol_orderbook_ticker_schema.load(request.args.to_dict())
@@ -125,7 +125,7 @@ def symbol_orderbook_ticker() -> Response:
     return response
 
 
-@blueprint.route("/open-interest")
+@blueprint.route("/open-interest", methods=["GET"])
 def open_interest() -> Response:
     server = get_server()
     params = market_open_interest_schema.load(request.args.to_dict())
@@ -133,7 +133,7 @@ def open_interest() -> Response:
     return response
 
 
-@blueprint.route("/open-interest/statistics")
+@blueprint.route("/open-interest/statistics", methods=["GET"])
 def open_interest_statistics() -> Response:
     server = get_server()
     params = market_open_interest_statistics_schema.load(request.args.to_dict())
