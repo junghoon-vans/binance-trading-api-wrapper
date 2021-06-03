@@ -7,6 +7,18 @@ class Environment:
     testing = "testing"
 
 
+class Period(Enum):
+    MIN5 = "5m"
+    MIN15 = "15m"
+    MIN30 = "30m"
+    HOUR1 = "1h"
+    HOUR2 = "2h"
+    HOUR4 = "4h"
+    HOUR6 = "6h"
+    HOUR12 = "12h"
+    DAY1 = "1d"
+
+
 class CandlestickInterval(Enum):
     MIN1 = "1m"
     MIN3 = "3m"
@@ -33,13 +45,10 @@ class ContractType(Enum):
     NEXT_QUARTER = "NEXT_QUARTER"
 
 
-class Period(Enum):
-    MIN5 = "5m"
-    MIN15 = "15m"
-    MIN30 = "30m"
-    HOUR1 = "1h"
-    HOUR2 = "2h"
-    HOUR4 = "4h"
-    HOUR6 = "6h"
-    HOUR12 = "12h"
-    DAY1 = "1d"
+class IncomeType(Enum):
+    TRANSFER = "TRANSFER"
+    WELCOME_BONUS = "WELCOME_BONUS"
+    REALIZED_PNL = "REALIZED_PNL"
+    FUNDING_FEE = "FUNDING_FEE"
+    COMMISSION = "COMMISSION"
+    INSURANCE_CLEAR = "INSURANCE_CLEAR"
