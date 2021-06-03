@@ -1,13 +1,29 @@
 from flask import Blueprint, request, jsonify, Response
 
 from api import get_server
+from api.schema import (
+    market_order_book_schema,
+    market_recent_trades_schema,
+    market_aggregate_trades_schema,
+    market_klines_schema,
+    market_continous_klines_schema,
+    market_historical_klines_schema,
+    market_historical_klines_generator_schema,
+    market_mark_price_schema,
+    market_funding_rate_schema,
+    market_ticker_price_change_schema,
+    market_symbol_price_ticker_schema,
+    market_symbol_orderbook_ticker_schema,
+    market_open_interest_schema,
+    market_open_interest_statistics_schema,
+)
 
 
 blueprint = Blueprint("market", __name__, url_prefix="/market")
 
 
-@blueprint.route("/exchange-info")
-def exchange_info() -> Response:
+@blueprint.route("/exchange")
+def exchange_information() -> Response:
     server = get_server()
     response = jsonify(server.request.futures_exchange_info())
     return response
@@ -16,7 +32,7 @@ def exchange_info() -> Response:
 @blueprint.route("/depth")
 def order_book() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_order_book_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_order_book(**params))
     return response
 
@@ -24,23 +40,15 @@ def order_book() -> Response:
 @blueprint.route("/trades")
 def recent_trades_list() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_recent_trades_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_recent_trades(**params))
-    return response
-
-
-@blueprint.route("/trades/historical")
-def old_trades_lookup() -> Response:
-    server = get_server()
-    params = request.args.to_dict()
-    response = jsonify(server.request.futures_historical_trades(**params))
     return response
 
 
 @blueprint.route("/trades/aggregate")
 def aggregate_trades_list() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_aggregate_trades_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_aggregate_trades(**params))
     return response
 
@@ -48,7 +56,7 @@ def aggregate_trades_list() -> Response:
 @blueprint.route("/klines")
 def klines_or_candle_data() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_klines_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_klines(**params))
     return response
 
@@ -56,7 +64,7 @@ def klines_or_candle_data() -> Response:
 @blueprint.route("/klines/continous")
 def continous_klines_or_candle_data() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_continous_klines_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_continous_klines(**params))
     return response
 
@@ -64,7 +72,7 @@ def continous_klines_or_candle_data() -> Response:
 @blueprint.route("/klines/historical")
 def historical_klines() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_historical_klines_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_historical_klines(**params))
     return response
 
@@ -72,7 +80,7 @@ def historical_klines() -> Response:
 @blueprint.route("/klines/historical/generator")
 def historical_klines_generator() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_historical_klines_generator_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_historical_klines_generator(**params))
     return response
 
@@ -80,7 +88,7 @@ def historical_klines_generator() -> Response:
 @blueprint.route("/mark-price")
 def mark_price() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_mark_price_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_mark_price(**params))
     return response
 
@@ -88,7 +96,7 @@ def mark_price() -> Response:
 @blueprint.route("/funding-rate")
 def get_funding_rate_history() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_funding_rate_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_funding_rate(**params))
     return response
 
@@ -96,7 +104,7 @@ def get_funding_rate_history() -> Response:
 @blueprint.route("/ticker/24h")
 def ticker_price_change_statistics() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_ticker_price_change_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_ticker(**params))
     return response
 
@@ -104,7 +112,7 @@ def ticker_price_change_statistics() -> Response:
 @blueprint.route("/ticker/price")
 def symbol_price_ticker() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_symbol_price_ticker_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_symbol_ticker(**params))
     return response
 
@@ -112,7 +120,7 @@ def symbol_price_ticker() -> Response:
 @blueprint.route("/ticker/depth")
 def symbol_orderbook_ticker() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_symbol_orderbook_ticker_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_orderbook_ticker(**params))
     return response
 
@@ -120,7 +128,7 @@ def symbol_orderbook_ticker() -> Response:
 @blueprint.route("/open-interest")
 def open_interest() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_open_interest_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_open_interest(**params))
     return response
 
@@ -128,6 +136,6 @@ def open_interest() -> Response:
 @blueprint.route("/open-interest/statistics")
 def open_interest_statistics() -> Response:
     server = get_server()
-    params = request.args.to_dict()
+    params = market_open_interest_statistics_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_open_interest_hist(**params))
     return response

@@ -17,6 +17,12 @@ class SymbolOptionalSchema(Schema):
     )
 
 
+class PairRequiredSchema(Schema):
+    symbol = fields.String(
+        required=True,
+    )
+
+
 class TimeSchema(Schema):
     serverTime = fields.Number(
         required=True,

@@ -8,7 +8,7 @@ from binance import Client
 
 from api.utils.config_proxy import load_config
 from api.client import MainnetClient, TestnetClient
-from api.environment import Environment
+from api.enum import Environment
 
 
 class Server(NamedTuple):
