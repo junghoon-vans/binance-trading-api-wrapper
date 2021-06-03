@@ -17,8 +17,8 @@ from api.schema.market import (
     AggregateTradesSchema,
     KlinesSchema,
     ContinousKlinesSchema,
-    HistoricalKlinesSchema,
-    HistoricalKlinesGeneratorSchema,
+    GetHistoricalKlinesSchema,
+    PostHistoricalKlinesSchema,
     MarkPriceSchema,
     FundingRateSchema,
     TickerPriceChangeSchema,
@@ -64,8 +64,8 @@ market_recent_trades_schema = LookupSchema()
 market_aggregate_trades_schema = AggregateTradesSchema()
 market_klines_schema = KlinesSchema()
 market_continous_klines_schema = ContinousKlinesSchema()
-market_historical_klines_schema = HistoricalKlinesSchema()
-market_historical_klines_generator_schema = HistoricalKlinesGeneratorSchema()
+market_get_historical_klines_schema = GetHistoricalKlinesSchema()
+market_post_historical_klines_schema = PostHistoricalKlinesSchema()
 market_mark_price_schema = MarkPriceSchema()
 market_funding_rate_schema = FundingRateSchema()
 market_ticker_price_change_schema = TickerPriceChangeSchema()

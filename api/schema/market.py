@@ -83,7 +83,7 @@ class ContinousKlinesSchema(PairRequiredSchema):
     )
 
 
-class HistoricalKlinesSchema(SymbolRequiredSchema):
+class GetHistoricalKlinesSchema(SymbolRequiredSchema):
     interval = fields.String(
         required=True,
         validate=validate.OneOf([e.value for e in CandlestickInterval]),
@@ -103,7 +103,7 @@ class HistoricalKlinesSchema(SymbolRequiredSchema):
     )
 
 
-class HistoricalKlinesGeneratorSchema(SymbolRequiredSchema):
+class PostHistoricalKlinesSchema(SymbolRequiredSchema):
     interval = fields.String(
         required=True,
         validate=validate.OneOf([e.value for e in CandlestickInterval]),

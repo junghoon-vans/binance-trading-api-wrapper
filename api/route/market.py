@@ -7,8 +7,8 @@ from api.schema import (
     market_aggregate_trades_schema,
     market_klines_schema,
     market_continous_klines_schema,
-    market_historical_klines_schema,
-    market_historical_klines_generator_schema,
+    market_get_historical_klines_schema,
+    market_post_historical_klines_schema,
     market_mark_price_schema,
     market_funding_rate_schema,
     market_ticker_price_change_schema,
@@ -69,19 +69,15 @@ def continous_klines_or_candle_data() -> Response:
     return response
 
 
-@blueprint.route("/klines/historical", methods=["GET"])
+@blueprint.route("/klines/historical", methods=["GET", "POST"])
 def historical_klines() -> Response:
     server = get_server()
-    params = market_historical_klines_schema.load(request.args.to_dict())
-    response = jsonify(server.request.futures_historical_klines(**params))
-    return response
-
-
-@blueprint.route("/klines/historical/generator", methods=["GET"])
-def historical_klines_generator() -> Response:
-    server = get_server()
-    params = market_historical_klines_generator_schema.load(request.args.to_dict())
-    response = jsonify(server.request.futures_historical_klines_generator(**params))
+    if request.method == "GET":
+        params = market_get_historical_klines_schema.load(request.args.to_dict())
+        response = jsonify(server.request.futures_historical_klines(**params))
+    elif request.method == "POST":
+        params = market_post_historical_klines_schema.load(request.args.to_dict())
+        response = jsonify(server.request.futures_historical_klines_generator(**params))
     return response
 
 
