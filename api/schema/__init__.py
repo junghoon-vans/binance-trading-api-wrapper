@@ -14,19 +14,20 @@ from api.schema.account import (
 )
 
 from api.schema.market import (
-    LookupSchema,
-    AggregateTradesSchema,
-    KlinesSchema,
-    ContinousKlinesSchema,
+    GetOrderBookSchema,
+    GetRecentTradesSchema,
+    GetAggregateTradesSchema,
+    GetKlinesSchema,
+    GetContinousKlinesSchema,
     GetHistoricalKlinesSchema,
     PostHistoricalKlinesSchema,
-    MarkPriceSchema,
-    FundingRateSchema,
-    TickerPriceChangeSchema,
-    SymbolPriceTickerSchema,
-    SymbolOrderbookTickerSchema,
-    OpenInterestSchema,
-    OpenInterestStatisticsSchema,
+    GetMarkPriceSchema,
+    GetFundingRateSchema,
+    GetTickerPriceChangeSchema,
+    GetSymbolPriceTickerSchema,
+    GetSymbolOrderbookTickerSchema,
+    GetOpenInterestSchema,
+    GetOpenInterestStatisticsSchema,
 )
 
 from api.schema.trade import (
@@ -58,20 +59,20 @@ account_get_postion_schema = GetPositionSchema()
 account_get_income_schema = GetIncomeSchema()
 account_get_leverage_bracket_schema = GetLeverageBracketSchema()
 
-market_order_book_schema = LookupSchema()
-market_recent_trades_schema = LookupSchema()
-market_aggregate_trades_schema = AggregateTradesSchema()
-market_klines_schema = KlinesSchema()
-market_continous_klines_schema = ContinousKlinesSchema()
+market_get_order_book_schema = GetOrderBookSchema()
+market_get_recent_trades_schema = GetRecentTradesSchema()
+market_get_aggregate_trades_schema = GetAggregateTradesSchema()
+market_get_klines_schema = GetKlinesSchema()
+market_get_continous_klines_schema = GetContinousKlinesSchema()
 market_get_historical_klines_schema = GetHistoricalKlinesSchema()
 market_post_historical_klines_schema = PostHistoricalKlinesSchema()
-market_mark_price_schema = MarkPriceSchema()
-market_funding_rate_schema = FundingRateSchema()
-market_ticker_price_change_schema = TickerPriceChangeSchema()
-market_symbol_price_ticker_schema = SymbolPriceTickerSchema()
-market_symbol_orderbook_ticker_schema = SymbolOrderbookTickerSchema()
-market_open_interest_schema = OpenInterestSchema()
-market_open_interest_statistics_schema = OpenInterestStatisticsSchema()
+market_get_mark_price_schema = GetMarkPriceSchema()
+market_get_funding_rate_schema = GetFundingRateSchema()
+market_get_ticker_price_change_schema = GetTickerPriceChangeSchema()
+market_get_symbol_price_ticker_schema = GetSymbolPriceTickerSchema()
+market_get_symbol_orderbook_ticker_schema = GetSymbolOrderbookTickerSchema()
+market_get_open_interest_schema = GetOpenInterestSchema()
+market_get_open_interest_statistics_schema = GetOpenInterestStatisticsSchema()
 
 trade_get_order_schema = GetOrderSchema()
 trade_post_order_schema = PostOrderSchema()
