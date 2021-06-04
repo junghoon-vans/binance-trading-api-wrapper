@@ -37,8 +37,8 @@ def transfer() -> Response:
         params = account_transfer_history_schema.load(request.args.to_dict())
         response = jsonify(server.request.transfer_history(**params))
     elif request.method == "POST":
-        params = account_transfer_schema.load(request.args.to_dict())
-        response = jsonify(server.request.futures_account_transfer(**params))
+        payload = account_transfer_schema.load(request.get_json())
+        response = jsonify(server.request.futures_account_transfer(**payload))
     return response
 
 

@@ -21,22 +21,21 @@ def time() -> Response:
     return response
 
 
-@blueprint.route("/stream", methods=("GET", "PUT", "DELETE"))
+@blueprint.route("/stream", methods=["GET"])
 def stream() -> Response:
     server = get_server()
-    response = Response()
+    listen_key = server.request.futures_stream_get_listen_key()
+    response = jsonify(stream_schema.dump({"listenKey": listen_key}))
+    return response
 
-    if request.method == "GET":
-        listen_key = server.request.futures_stream_get_listen_key()
-        response = jsonify(stream_schema.dump({"listenKey": listen_key}))
-    elif request.method == "PUT":
-        payload = stream_schema.load(request.args.to_dict())
-        listen_key = payload["listenKey"]
+
+@blueprint.route("/stream/<listen_key>", methods=["PUT", "DELETE"])
+def modify_stream(listen_key) -> Response:
+    server = get_server()
+    if request.method == "PUT":
         response = jsonify(
             server.request.futures_stream_keepalive(listenKey=listen_key)
         )
     elif request.method == "DELETE":
-        payload = stream_schema.load(request.args.to_dict())
-        listen_key = payload["listenKey"]
         response = jsonify(server.request.futures_stream_close(listenKey=listen_key))
     return response
