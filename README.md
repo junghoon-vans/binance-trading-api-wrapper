@@ -72,12 +72,18 @@ Components
 │   │   └── default.py
 │   │   └── market.py
 │   │   └── trade.py
+│   ├── schema
+│   │   └── __init__.py
+│   │   └── account.py
+│   │   └── default.py
+│   │   └── market.py
+│   │   └── trade.py
 │   ├── utils
 │   │   ├── __init__.py
 │   │   └── config_proxy.py
 │   ├── __init__.py
 │   ├── client.py
-│   └── environment.py
+│   └── enum.py
 ├── configs
 │   └── development.yaml
 │   └── example.yaml
