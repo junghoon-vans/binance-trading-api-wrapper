@@ -1,15 +1,16 @@
 from api.schema.default import (
     EmptyDictSchema,
-    SymbolRequiredSchema,
-    SymbolOptionalSchema,
     TimeSchema,
     StreamSchema,
 )
 
 from api.schema.account import (
-    AccountTransferSchema,
-    AccountTransferHistorySchema,
-    AccountIncomeHistorySchema,
+    GetTransferSchema,
+    PostTransferSchema,
+    GetTradesSchema,
+    GetPositionSchema,
+    GetIncomeSchema,
+    GetLeverageBracketSchema,
 )
 
 from api.schema.market import (
@@ -50,12 +51,12 @@ ping_schema = EmptyDictSchema()
 time_schema = TimeSchema()
 stream_schema = StreamSchema()
 
-account_transfer_schema = AccountTransferSchema()
-account_transfer_history_schema = AccountTransferHistorySchema()
-account_trades_schema = SymbolRequiredSchema()
-account_postion_info_schema = SymbolOptionalSchema()
-account_income_history_schema = AccountIncomeHistorySchema()
-account_leverage_bracket_schema = SymbolOptionalSchema()
+account_get_transfer_schema = GetTransferSchema()
+account_post_transfer_schema = PostTransferSchema()
+account_get_trades_schema = GetTradesSchema()
+account_get_postion_schema = GetPositionSchema()
+account_get_income_schema = GetIncomeSchema()
+account_get_leverage_bracket_schema = GetLeverageBracketSchema()
 
 market_order_book_schema = LookupSchema()
 market_recent_trades_schema = LookupSchema()
