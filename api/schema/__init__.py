@@ -41,9 +41,7 @@ from api.schema.trade import (
     ChangeMarginTypeSchema,
     GetPositionMarginSchema,
     PostPositionMarginSchema,
-    GetPositionModeSchema,
     PostPositionModeSchema,
-    GetMultiAssetModeSchema,
     PostMultiAssetModeSchema,
 )
 
@@ -86,7 +84,5 @@ trade_change_leverage_schema = ChangeLeverageSchema()
 trade_change_margin_type_schema = ChangeMarginTypeSchema()
 trade_get_position_margin_schema = GetPositionMarginSchema()
 trade_post_position_margin_schema = PostPositionMarginSchema()
-trade_get_position_mode_schema = GetPositionModeSchema()
 trade_post_position_mode_schema = PostPositionModeSchema()
-trade_get_multi_asset_mode_schema = GetMultiAssetModeSchema()
 trade_post_multi_asset_mode_schema = PostMultiAssetModeSchema()

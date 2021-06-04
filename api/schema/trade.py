@@ -205,10 +205,6 @@ class PostPositionMarginSchema(SymbolRequiredSchema):
     )
 
 
-class GetPositionModeSchema(Schema):
-    pass
-
-
 class PostPositionModeSchema(Schema):
     dualSidePosition = fields.Boolean(
         required=True,
@@ -216,10 +212,6 @@ class PostPositionModeSchema(Schema):
             "description": "'true': Hedge Mode; 'false': One-way Mode",
         },
     )
-
-
-class GetMultiAssetModeSchema(Schema):
-    pass
 
 
 class PostMultiAssetModeSchema(Schema):

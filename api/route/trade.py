@@ -14,9 +14,7 @@ from api.schema import (
     trade_change_margin_type_schema,
     trade_get_position_margin_schema,
     trade_post_position_margin_schema,
-    trade_get_position_mode_schema,
     trade_post_position_mode_schema,
-    trade_get_multi_asset_mode_schema,
     trade_post_multi_asset_mode_schema,
 )
 
@@ -113,8 +111,7 @@ def position_mode() -> Response:
     response = Response()
 
     if request.method == "GET":
-        params = trade_get_position_mode_schema.load(request.args.to_dict())
-        response = jsonify(server.request.futures_get_position_mode(**params))
+        response = jsonify(server.request.futures_get_position_mode())
     elif request.method == "POST":
         params = trade_post_position_mode_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_change_position_mode(**params))
@@ -127,7 +124,6 @@ def change_multi_assets_mode() -> Response:
     response = Response()
 
     if request.method == "GET":
-        params = trade_get_multi_asset_mode_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_get_multi_assets_mode())
     elif request.method == "POST":
         params = trade_post_multi_asset_mode_schema.load(request.args.to_dict())
