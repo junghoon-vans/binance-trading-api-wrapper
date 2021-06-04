@@ -76,8 +76,10 @@ def historical_klines() -> Response:
         params = market_get_historical_klines_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_historical_klines(**params))
     elif request.method == "POST":
-        params = market_post_historical_klines_schema.load(request.args.to_dict())
-        response = jsonify(server.request.futures_historical_klines_generator(**params))
+        payload = market_post_historical_klines_schema.load(request.get_json())
+        response = jsonify(
+            server.request.futures_historical_klines_generator(**payload)
+        )
     return response
 
 

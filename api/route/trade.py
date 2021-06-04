@@ -31,8 +31,8 @@ def order() -> Response:
         params = trade_get_order_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_get_order(**params))
     elif request.method == "POST":
-        params = trade_post_order_schema.load(request.args.to_dict())
-        response = jsonify(server.request.futures_create_order(**params))
+        payload = trade_post_order_schema.load(request.get_json())
+        response = jsonify(server.request.futures_create_order(**payload))
     elif request.method == "DELETE":
         params = trade_delete_order_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_cancel_order(**params))
@@ -45,8 +45,8 @@ def mutiple_orders() -> Response:
     response = Response()
 
     if request.method == "POST":
-        params = trade_post_multiple_order_schema.load(request.args.to_dict())
-        response = jsonify(server.request.futures_place_batch_order(**params))
+        payload = trade_post_multiple_order_schema.load(request.get_json())
+        response = jsonify(server.request.futures_place_batch_order(**payload))
     elif request.method == "DELETE":
         params = trade_delete_multiple_order_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_cancel_orders(**params))
@@ -78,16 +78,16 @@ def all_orders() -> Response:
 @blueprint.route("/leverage", methods=["POST"])
 def change_leverage() -> Response:
     server = get_server()
-    params = trade_change_leverage_schema.load(request.args.to_dict())
-    response = jsonify(server.request.futures_change_leverage(**params))
+    payload = trade_change_leverage_schema.load(request.get_json())
+    response = jsonify(server.request.futures_change_leverage(**payload))
     return response
 
 
 @blueprint.route("/margin-type", methods=["POST"])
 def change_margin_type() -> Response:
     server = get_server()
-    params = trade_change_margin_type_schema.load(request.args.to_dict())
-    response = jsonify(server.request.futures_change_margin_type(**params))
+    payload = trade_change_margin_type_schema.load(request.get_json())
+    response = jsonify(server.request.futures_change_margin_type(**payload))
     return response
 
 
@@ -100,8 +100,8 @@ def position_margin() -> Response:
         params = trade_get_position_margin_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_position_margin_history(**params))
     elif request.method == "POST":
-        params = trade_post_position_margin_schema.load(request.args.to_dict())
-        response = jsonify(server.request.futures_change_position_margin(**params))
+        payload = trade_post_position_margin_schema.load(request.get_json())
+        response = jsonify(server.request.futures_change_position_margin(**payload))
     return response
 
 
@@ -113,8 +113,8 @@ def position_mode() -> Response:
     if request.method == "GET":
         response = jsonify(server.request.futures_get_position_mode())
     elif request.method == "POST":
-        params = trade_post_position_mode_schema.load(request.args.to_dict())
-        response = jsonify(server.request.futures_change_position_mode(**params))
+        payload = trade_post_position_mode_schema.load(request.get_json())
+        response = jsonify(server.request.futures_change_position_mode(**payload))
     return response
 
 
@@ -126,6 +126,6 @@ def change_multi_assets_mode() -> Response:
     if request.method == "GET":
         response = jsonify(server.request.futures_get_multi_assets_mode())
     elif request.method == "POST":
-        params = trade_post_multi_asset_mode_schema.load(request.args.to_dict())
-        response = jsonify(server.request.futures_change_multi_assets_mode(**params))
+        payload = trade_post_multi_asset_mode_schema.load(request.get_json())
+        response = jsonify(server.request.futures_change_multi_assets_mode(**payload))
     return response
