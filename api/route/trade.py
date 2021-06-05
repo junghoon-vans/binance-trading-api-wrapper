@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, Response
+from flask import request, jsonify, Response
 
 from api import get_server
 from api.schema import (
@@ -17,13 +17,50 @@ from api.schema import (
     trade_put_position_mode_schema,
     trade_put_multi_asset_mode_schema,
 )
+from api.spec import DocumentedBlueprint
 
 
-blueprint = Blueprint("trade", __name__, url_prefix="/trade")
+blueprint = DocumentedBlueprint("trade", __name__, url_prefix="/trade")
 
 
 @blueprint.route("/order", methods=["GET", "POST", "DELETE"])
 def order() -> Response:
+    """
+    Order
+    ---
+    get:
+      description: Check an order's status.
+      parameters:
+        - in: query
+          schema: GetOrderSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    post:
+      description: Send in a new order.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: PostOrderSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    delete:
+      description: Cancel an active order.
+      parameters:
+        - in: query
+          schema: DeleteOrderSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     response = Response()
 
@@ -40,7 +77,31 @@ def order() -> Response:
 
 
 @blueprint.route("/order/multiple", methods=["POST", "DELETE"])
-def mutiple_orders() -> Response:
+def mutiple_order() -> Response:
+    """
+    Multiple Order
+    ---
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: PostMultipleOrderSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    delete:
+      parameters:
+        - in: query
+          schema: DeleteMultipleOrderSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     response = Response()
 
@@ -55,6 +116,20 @@ def mutiple_orders() -> Response:
 
 @blueprint.route("/order/open", methods=["GET"])
 def open_orders() -> Response:
+    """
+    Open Order
+    ---
+    get:
+      description: Query Current Open Order
+      parameters:
+        - in: query
+          schema: GetOpenOrderSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = trade_get_open_order_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_get_open_orders(**params))
@@ -63,6 +138,30 @@ def open_orders() -> Response:
 
 @blueprint.route("/order/all", methods=["GET", "DELETE"])
 def all_orders() -> Response:
+    """
+    All Open Orders
+    ---
+    get:
+      description: Current All Open Orders
+      parameters:
+        - in: query
+          schema: GetAllOrderSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    delete:
+      description: Cancel All Open Orders
+      parameters:
+        - in: query
+          schema: DeleteAllOrderSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     response = Response()
 
@@ -77,6 +176,22 @@ def all_orders() -> Response:
 
 @blueprint.route("/leverage", methods=["PUT"])
 def leverage() -> Response:
+    """
+    Change Initial Leverage
+    ---
+    put:
+      description: Change user's initial leverage of specific symbol market.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: PutLeverageSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     payload = trade_put_leverage_schema.load(request.get_json())
     response = jsonify(server.request.futures_change_leverage(**payload))
@@ -85,6 +200,21 @@ def leverage() -> Response:
 
 @blueprint.route("/margin-type", methods=["PUT"])
 def margin_type() -> Response:
+    """
+    Change Margin Type
+    ---
+    put:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: PutMarginTypeSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     payload = trade_put_margin_type_schema.load(request.get_json())
     response = jsonify(server.request.futures_change_margin_type(**payload))
@@ -93,6 +223,32 @@ def margin_type() -> Response:
 
 @blueprint.route("/position-margin", methods=["GET", "PUT"])
 def position_margin() -> Response:
+    """
+    Position Margin
+    ---
+    get:
+      description: Get Position Margin Change History
+      parameters:
+        - in: query
+          schema: GetPositionMarginSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    put:
+      description: Modify Isolated Position Margin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: PutPositionMarginSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     response = Response()
 
@@ -107,6 +263,31 @@ def position_margin() -> Response:
 
 @blueprint.route("/mode/position", methods=["GET", "PUT"])
 def position_mode() -> Response:
+    """
+    Position Mode
+    ---
+    get:
+      description:
+        - Get user's position mode (Hedge Mode or One-way Mode ) on EVERY symbol
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    put:
+      description:
+        - Change user's position mode (Hedge Mode or One-way Mode ) on EVERY symbol
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: PutPositionModeSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     response = Response()
 
@@ -120,6 +301,31 @@ def position_mode() -> Response:
 
 @blueprint.route("mode/multi-asset", methods=["GET", "PUT"])
 def multi_assets_mode() -> Response:
+    """
+    Multi Assets Mode
+    ---
+    get:
+      description:
+        - Get user's Multi-Assets mode on Every symbol
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    put:
+      description:
+        - Change user's Multi-Assets mode on Every symbol
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: PutMultiAssetModeSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     response = Response()
 

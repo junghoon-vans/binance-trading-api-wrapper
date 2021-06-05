@@ -1,5 +1,6 @@
 aiohttp==3.7.4.post0
 aniso8601==9.0.1
+apispec==4.5.0
 appdirs==1.4.4
 async-timeout==3.0.1
 attrs==21.2.0
@@ -43,7 +44,7 @@ typed-ast==1.4.3
 typing-extensions==3.10.0.0
 tzlocal==2.1
 ujson==4.0.2
-urllib3==1.26.5
+urllib3==1.26.4
 virtualenv==20.4.6
 websockets==9.0.2
 Werkzeug==2.0.1

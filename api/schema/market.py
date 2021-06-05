@@ -1,6 +1,6 @@
 from marshmallow import fields, validate
 
-from api.schema.default import (
+from api.schema.base import (
     SymbolRequiredSchema,
     SymbolOptionalSchema,
     PairRequiredSchema,

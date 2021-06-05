@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, Response
+from flask import request, jsonify, Response
 
 from api import get_server
 from api.schema import (
@@ -17,20 +17,45 @@ from api.schema import (
     market_get_open_interest_schema,
     market_get_open_interest_statistics_schema,
 )
+from api.spec import DocumentedBlueprint
 
 
-blueprint = Blueprint("market", __name__, url_prefix="/market")
+blueprint = DocumentedBlueprint("market", __name__, url_prefix="/market")
 
 
 @blueprint.route("/exchange", methods=["GET"])
-def exchange_information() -> Response:
+def exchange() -> Response:
+    """
+    Exchange Information
+    ---
+    get:
+      description: Current exchange trading rules and symbol information
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     response = jsonify(server.request.futures_exchange_info())
     return response
 
 
 @blueprint.route("/depth", methods=["GET"])
-def order_book() -> Response:
+def depth() -> Response:
+    """
+    Order Book
+    ---
+    get:
+      parameters:
+        - in: query
+          schema: GetOrderBookSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_order_book_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_order_book(**params))
@@ -38,7 +63,21 @@ def order_book() -> Response:
 
 
 @blueprint.route("/trades", methods=["GET"])
-def recent_trades_list() -> Response:
+def trades() -> Response:
+    """
+    Recent Trades List
+    ---
+    get:
+      description: Get recent trades
+      parameters:
+        - in: query
+          schema: GetRecentTradesSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_recent_trades_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_recent_trades(**params))
@@ -46,7 +85,24 @@ def recent_trades_list() -> Response:
 
 
 @blueprint.route("/trades/aggregate", methods=["GET"])
-def aggregate_trades_list() -> Response:
+def aggregate() -> Response:
+    """
+    Compressed/Aggregate Trades List
+    ---
+    get:
+      description:
+        - Get compressed, aggregate trades.
+        - Trades that fill at the time, from the same order,
+        - with the same price will have the quantity aggregated.
+      parameters:
+        - in: query
+          schema: GetAggregateTradesSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_aggregate_trades_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_aggregate_trades(**params))
@@ -54,7 +110,23 @@ def aggregate_trades_list() -> Response:
 
 
 @blueprint.route("/klines", methods=["GET"])
-def klines_or_candle_data() -> Response:
+def klines() -> Response:
+    """
+    Kline/Candlestick Data
+    ---
+    get:
+      description:
+        - Kline/candlestick bars for a symbol.
+        - Klines are uniquely identified by their open time.
+      parameters:
+        - in: query
+          schema: GetKlinesSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_klines_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_klines(**params))
@@ -62,7 +134,23 @@ def klines_or_candle_data() -> Response:
 
 
 @blueprint.route("/klines/continous", methods=["GET"])
-def continous_klines_or_candle_data() -> Response:
+def continous_klines() -> Response:
+    """
+    Continuous Contract Kline/Candlestick Data
+    ---
+    get:
+      description:
+        - Kline/candlestick bars for a specific contract type.
+        - Klines are uniquely identified by their open time.
+      parameters:
+        - in: query
+          schema: GetContinousKlinesSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_continous_klines_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_continous_klines(**params))
@@ -71,6 +159,30 @@ def continous_klines_or_candle_data() -> Response:
 
 @blueprint.route("/klines/historical", methods=["GET", "POST"])
 def historical_klines() -> Response:
+    """
+    Historical Klines
+    ---
+    get:
+      parameters:
+        - in: query
+          schema: GetHistoricalKlinesSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: PostHistoricalKlinesSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     if request.method == "GET":
         params = market_get_historical_klines_schema.load(request.args.to_dict())
@@ -85,6 +197,20 @@ def historical_klines() -> Response:
 
 @blueprint.route("/mark-price", methods=["GET"])
 def mark_price() -> Response:
+    """
+    Mark Price
+    ---
+    get:
+      description: Mark Price and Funding Rate
+      parameters:
+        - in: query
+          schema: GetMarkPriceSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_mark_price_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_mark_price(**params))
@@ -93,14 +219,41 @@ def mark_price() -> Response:
 
 @blueprint.route("/funding-rate", methods=["GET"])
 def get_funding_rate_history() -> Response:
+    """
+    Get Funding Rate History
+    ---
+    get:
+      parameters:
+        - in: query
+          schema: GetFundingRateSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_funding_rate_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_funding_rate(**params))
     return response
 
 
-@blueprint.route("/ticker/24h", methods=["GET"])
-def ticker_price_change_statistics() -> Response:
+@blueprint.route("/ticker/daily", methods=["GET"])
+def ticker_daily_price_changes() -> Response:
+    """
+    24hr Ticker Price Change Statistics
+    ---
+    get:
+      description: 24 hour rolling window price change statistics.
+      parameters:
+        - in: query
+          schema: GetTickerPriceChangeSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_ticker_price_change_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_ticker(**params))
@@ -109,6 +262,20 @@ def ticker_price_change_statistics() -> Response:
 
 @blueprint.route("/ticker/price", methods=["GET"])
 def symbol_price_ticker() -> Response:
+    """
+    Symbol Price Ticker
+    ---
+    get:
+      description: Latest price for a symbol or symbols.
+      parameters:
+        - in: query
+          schema: GetSymbolPriceTickerSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_symbol_price_ticker_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_symbol_ticker(**params))
@@ -117,6 +284,20 @@ def symbol_price_ticker() -> Response:
 
 @blueprint.route("/ticker/depth", methods=["GET"])
 def symbol_orderbook_ticker() -> Response:
+    """
+    Symbol Order Book Ticke
+    ---
+    get:
+      description: Best price/qty on the order book for a symbol or symbols.
+      parameters:
+        - in: query
+          schema: GetSymbolOrderbookTickerSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_symbol_orderbook_ticker_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_orderbook_ticker(**params))
@@ -125,6 +306,20 @@ def symbol_orderbook_ticker() -> Response:
 
 @blueprint.route("/open-interest", methods=["GET"])
 def open_interest() -> Response:
+    """
+    Open Interest
+    ---
+    get:
+      description: Get present open interest of a specific symbol.
+      parameters:
+        - in: query
+          schema: GetOpenInterestSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_open_interest_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_open_interest(**params))
@@ -133,6 +328,19 @@ def open_interest() -> Response:
 
 @blueprint.route("/open-interest/statistics", methods=["GET"])
 def open_interest_statistics() -> Response:
+    """
+    Open Interest Statistics
+    ---
+    get:
+      parameters:
+        - in: query
+          schema: GetOpenInterestStatisticsSchema
+      responses:
+        200:
+          content:
+            application/json: {}
+          description: OK
+    """
     server = get_server()
     params = market_get_open_interest_statistics_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_open_interest_hist(**params))

@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields, validate
 
-from api.schema.default import SymbolRequiredSchema, SymbolOptionalSchema
+from api.schema.base import SymbolRequiredSchema, SymbolOptionalSchema
 from api.enum import (
     OrderSide,
     PositionSide,
