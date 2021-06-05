@@ -93,10 +93,10 @@ def transfer() -> Response:
 @blueprint.route("/trades", methods=["GET"])
 def trades() -> Response:
     """
-    Recent Trades List
+    Account Trade List
     ---
     get:
-      description: Get recent trades.
+      description: Get trades for a specific account and symbol.
       parameters:
         - in: query
           schema: GetTradesSchema
