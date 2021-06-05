@@ -39,12 +39,12 @@ from api.schema.trade import (
     GetOpenOrderSchema,
     GetAllOrderSchema,
     DeleteAllOrderSchema,
-    ChangeLeverageSchema,
-    ChangeMarginTypeSchema,
+    PutLeverageSchema,
+    PutMarginTypeSchema,
     GetPositionMarginSchema,
-    PostPositionMarginSchema,
-    PostPositionModeSchema,
-    PostMultiAssetModeSchema,
+    PutPositionMarginSchema,
+    PutPositionModeSchema,
+    PutMultiAssetModeSchema,
 )
 
 
@@ -82,9 +82,9 @@ trade_delete_multiple_order_schema = DeleteMultipleOrderSchema()
 trade_get_open_order_schema = GetOpenOrderSchema()
 trade_get_all_order_schema = GetAllOrderSchema()
 trade_delete_all_order_schema = DeleteAllOrderSchema()
-trade_change_leverage_schema = ChangeLeverageSchema()
-trade_change_margin_type_schema = ChangeMarginTypeSchema()
+trade_put_leverage_schema = PutLeverageSchema()
+trade_put_margin_type_schema = PutMarginTypeSchema()
 trade_get_position_margin_schema = GetPositionMarginSchema()
-trade_post_position_margin_schema = PostPositionMarginSchema()
-trade_post_position_mode_schema = PostPositionModeSchema()
-trade_post_multi_asset_mode_schema = PostMultiAssetModeSchema()
+trade_put_position_margin_schema = PutPositionMarginSchema()
+trade_put_position_mode_schema = PutPositionModeSchema()
+trade_put_multi_asset_mode_schema = PutMultiAssetModeSchema()

@@ -10,12 +10,12 @@ from api.schema import (
     trade_get_open_order_schema,
     trade_get_all_order_schema,
     trade_delete_all_order_schema,
-    trade_change_leverage_schema,
-    trade_change_margin_type_schema,
+    trade_put_leverage_schema,
+    trade_put_margin_type_schema,
     trade_get_position_margin_schema,
-    trade_post_position_margin_schema,
-    trade_post_position_mode_schema,
-    trade_post_multi_asset_mode_schema,
+    trade_put_position_margin_schema,
+    trade_put_position_mode_schema,
+    trade_put_multi_asset_mode_schema,
 )
 
 
@@ -54,7 +54,7 @@ def mutiple_orders() -> Response:
 
 
 @blueprint.route("/order/open", methods=["GET"])
-def get_open_orders() -> Response:
+def open_orders() -> Response:
     server = get_server()
     params = trade_get_open_order_schema.load(request.args.to_dict())
     response = jsonify(server.request.futures_get_open_orders(**params))
@@ -75,23 +75,23 @@ def all_orders() -> Response:
     return response
 
 
-@blueprint.route("/leverage", methods=["POST"])
-def change_leverage() -> Response:
+@blueprint.route("/leverage", methods=["PUT"])
+def leverage() -> Response:
     server = get_server()
-    payload = trade_change_leverage_schema.load(request.get_json())
+    payload = trade_put_leverage_schema.load(request.get_json())
     response = jsonify(server.request.futures_change_leverage(**payload))
     return response
 
 
-@blueprint.route("/margin-type", methods=["POST"])
-def change_margin_type() -> Response:
+@blueprint.route("/margin-type", methods=["PUT"])
+def margin_type() -> Response:
     server = get_server()
-    payload = trade_change_margin_type_schema.load(request.get_json())
+    payload = trade_put_margin_type_schema.load(request.get_json())
     response = jsonify(server.request.futures_change_margin_type(**payload))
     return response
 
 
-@blueprint.route("/position-margin", methods=["GET", "POST"])
+@blueprint.route("/position-margin", methods=["GET", "PUT"])
 def position_margin() -> Response:
     server = get_server()
     response = Response()
@@ -99,33 +99,33 @@ def position_margin() -> Response:
     if request.method == "GET":
         params = trade_get_position_margin_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_position_margin_history(**params))
-    elif request.method == "POST":
-        payload = trade_post_position_margin_schema.load(request.get_json())
+    elif request.method == "PUT":
+        payload = trade_put_position_margin_schema.load(request.get_json())
         response = jsonify(server.request.futures_change_position_margin(**payload))
     return response
 
 
-@blueprint.route("/mode/position", methods=["GET", "POST"])
+@blueprint.route("/mode/position", methods=["GET", "PUT"])
 def position_mode() -> Response:
     server = get_server()
     response = Response()
 
     if request.method == "GET":
         response = jsonify(server.request.futures_get_position_mode())
-    elif request.method == "POST":
-        payload = trade_post_position_mode_schema.load(request.get_json())
+    elif request.method == "PUT":
+        payload = trade_put_position_mode_schema.load(request.get_json())
         response = jsonify(server.request.futures_change_position_mode(**payload))
     return response
 
 
-@blueprint.route("mode/multi-asset", methods=["GET", "POST"])
-def change_multi_assets_mode() -> Response:
+@blueprint.route("mode/multi-asset", methods=["GET", "PUT"])
+def multi_assets_mode() -> Response:
     server = get_server()
     response = Response()
 
     if request.method == "GET":
         response = jsonify(server.request.futures_get_multi_assets_mode())
-    elif request.method == "POST":
-        payload = trade_post_multi_asset_mode_schema.load(request.get_json())
+    elif request.method == "PUT":
+        payload = trade_put_multi_asset_mode_schema.load(request.get_json())
         response = jsonify(server.request.futures_change_multi_assets_mode(**payload))
     return response
