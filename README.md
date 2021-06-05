@@ -60,6 +60,14 @@ python launcher -e testing # run server with testing env
 
 > The testing environment connects to the Binance testnet. Therefore, you need to set `api_key`, `api_secret` as `environment variable` before executing server.
 
+
+### Build apidocs
+
+```
+python apidocs
+```
+
+
 Components
 ---
 
@@ -84,6 +92,7 @@ Components
 │   ├── __init__.py
 │   ├── client.py
 │   └── enum.py
+│   └── spec.py
 ├── configs
 │   └── development.yaml
 │   └── example.yaml
@@ -91,6 +100,7 @@ Components
 │   └── testing.yaml
 ├── .gitignore
 ├── .pre-commit-config.yaml
+├── apidocs.py
 ├── launcher.py
 ├── README.md
 ├── requirements.txt
