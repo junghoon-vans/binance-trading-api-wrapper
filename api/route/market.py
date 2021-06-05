@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, Response
+from flask import request, jsonify, Response
 
 from api import get_server
 from api.schema import (
@@ -17,9 +17,10 @@ from api.schema import (
     market_get_open_interest_schema,
     market_get_open_interest_statistics_schema,
 )
+from api.spec import DocumentedBlueprint
 
 
-blueprint = Blueprint("market", __name__, url_prefix="/market")
+blueprint = DocumentedBlueprint("market", __name__, url_prefix="/market")
 
 
 @blueprint.route("/exchange", methods=["GET"])

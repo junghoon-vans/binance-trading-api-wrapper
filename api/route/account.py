@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, Response
+from flask import request, jsonify, Response
 
 from api import get_server
 from api.schema import (
@@ -9,9 +9,10 @@ from api.schema import (
     account_get_income_schema,
     account_get_leverage_bracket_schema,
 )
+from api.spec import DocumentedBlueprint
 
 
-blueprint = Blueprint("account", __name__, url_prefix="/account")
+blueprint = DocumentedBlueprint("account", __name__, url_prefix="/account")
 
 
 @blueprint.route("/", methods=["GET"])

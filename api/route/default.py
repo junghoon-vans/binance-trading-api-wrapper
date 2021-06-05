@@ -1,10 +1,11 @@
-from flask import Blueprint, request, jsonify, Response
+from flask import request, jsonify, Response
 
 from api import get_server
 from api.schema import ping_schema, time_schema, stream_schema
+from api.spec import DocumentedBlueprint
 
 
-blueprint = Blueprint("default", __name__, url_prefix="/")
+blueprint = DocumentedBlueprint("default", __name__, url_prefix="/")
 
 
 @blueprint.route("/ping", methods=["GET"])

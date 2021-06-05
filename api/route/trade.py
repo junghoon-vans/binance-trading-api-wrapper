@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, Response
+from flask import request, jsonify, Response
 
 from api import get_server
 from api.schema import (
@@ -17,9 +17,10 @@ from api.schema import (
     trade_put_position_mode_schema,
     trade_put_multi_asset_mode_schema,
 )
+from api.spec import DocumentedBlueprint
 
 
-blueprint = Blueprint("trade", __name__, url_prefix="/trade")
+blueprint = DocumentedBlueprint("trade", __name__, url_prefix="/trade")
 
 
 @blueprint.route("/order", methods=["GET", "POST", "DELETE"])
