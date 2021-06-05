@@ -1,7 +1,7 @@
 from flask import request, jsonify, Response
 
 from api import get_server
-from api.schema import ping_schema, time_schema, stream_schema
+from api.schema import time_schema, stream_schema
 from api.spec import DocumentedBlueprint
 
 
@@ -11,7 +11,7 @@ blueprint = DocumentedBlueprint("default", __name__, url_prefix="/")
 @blueprint.route("/ping", methods=["GET"])
 def ping() -> Response:
     server = get_server()
-    response = jsonify(ping_schema.dump(server.request.futures_ping()))
+    response = jsonify(server.request.futures_ping())
     return response
 
 

@@ -1,10 +1,6 @@
 from marshmallow import Schema, fields
 
 
-class EmptyDictSchema(Schema):
-    pass
-
-
 class SymbolRequiredSchema(Schema):
     symbol = fields.String(
         required=True,
