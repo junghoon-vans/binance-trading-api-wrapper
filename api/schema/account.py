@@ -1,7 +1,7 @@
 from marshmallow import Schema, fields, validate
 
 from api.enum import IncomeType
-from api.schema.default import SymbolRequiredSchema, SymbolOptionalSchema
+from api.schema.base import SymbolRequiredSchema, SymbolOptionalSchema
 
 
 class GetTransferSchema(Schema):
