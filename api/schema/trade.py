@@ -158,14 +158,14 @@ class DeleteAllOrderSchema(SymbolRequiredSchema):
     pass
 
 
-class ChangeLeverageSchema(SymbolRequiredSchema):
+class PutLeverageSchema(SymbolRequiredSchema):
     leverage = fields.Integer(
         required=True,
         validate=validate.Range(min=1, max=125),
     )
 
 
-class ChangeMarginTypeSchema(SymbolRequiredSchema):
+class PutMarginTypeSchema(SymbolRequiredSchema):
     marginType = fields.String(
         validate=validate.OneOf([e.value for e in FuturesMarginType]),
     )
@@ -186,7 +186,7 @@ class GetPositionMarginSchema(SymbolRequiredSchema):
     limit = fields.Integer(default=500)
 
 
-class PostPositionMarginSchema(SymbolRequiredSchema):
+class PutPositionMarginSchema(SymbolRequiredSchema):
     positionSide = fields.String(
         default="BOTH",
         validate=validate.OneOf([e.value for e in PositionSide]),
@@ -205,7 +205,7 @@ class PostPositionMarginSchema(SymbolRequiredSchema):
     )
 
 
-class PostPositionModeSchema(Schema):
+class PutPositionModeSchema(Schema):
     dualSidePosition = fields.Boolean(
         required=True,
         metadata={
@@ -214,7 +214,7 @@ class PostPositionModeSchema(Schema):
     )
 
 
-class PostMultiAssetModeSchema(Schema):
+class PutMultiAssetModeSchema(Schema):
     multiAssetsMargin = fields.Boolean(
         required=True,
         metadata={
