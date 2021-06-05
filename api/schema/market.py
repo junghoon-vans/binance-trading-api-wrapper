@@ -18,7 +18,15 @@ class LookupSchema(SymbolRequiredSchema):
     )
 
 
-class AggregateTradesSchema(LookupSchema):
+class GetOrderBookSchema(LookupSchema):
+    pass
+
+
+class GetRecentTradesSchema(LookupSchema):
+    pass
+
+
+class GetAggregateTradesSchema(LookupSchema):
     fromId = fields.Number(
         required=False,
         metadata={
@@ -39,7 +47,7 @@ class AggregateTradesSchema(LookupSchema):
     )
 
 
-class KlinesSchema(SymbolRequiredSchema):
+class GetKlinesSchema(SymbolRequiredSchema):
     interval = fields.String(
         required=True,
         validate=validate.OneOf([e.value for e in CandlestickInterval]),
@@ -59,7 +67,7 @@ class KlinesSchema(SymbolRequiredSchema):
     )
 
 
-class ContinousKlinesSchema(PairRequiredSchema):
+class GetContinousKlinesSchema(PairRequiredSchema):
     contractType = fields.String(
         required=True,
         validate=validate.OneOf([e.value for e in ContractType]),
@@ -116,11 +124,11 @@ class PostHistoricalKlinesSchema(SymbolRequiredSchema):
     )
 
 
-class MarkPriceSchema(SymbolOptionalSchema):
+class GetMarkPriceSchema(SymbolOptionalSchema):
     pass
 
 
-class FundingRateSchema(SymbolOptionalSchema):
+class GetFundingRateSchema(SymbolOptionalSchema):
     startTime = fields.Number(
         required=False,
         metadata={
@@ -142,23 +150,23 @@ class FundingRateSchema(SymbolOptionalSchema):
     )
 
 
-class TickerPriceChangeSchema(SymbolOptionalSchema):
+class GetTickerPriceChangeSchema(SymbolOptionalSchema):
     pass
 
 
-class SymbolPriceTickerSchema(SymbolOptionalSchema):
+class GetSymbolPriceTickerSchema(SymbolOptionalSchema):
     pass
 
 
-class SymbolOrderbookTickerSchema(SymbolOptionalSchema):
+class GetSymbolOrderbookTickerSchema(SymbolOptionalSchema):
     pass
 
 
-class OpenInterestSchema(SymbolRequiredSchema):
+class GetOpenInterestSchema(SymbolRequiredSchema):
     pass
 
 
-class OpenInterestStatisticsSchema(SymbolRequiredSchema):
+class GetOpenInterestStatisticsSchema(SymbolRequiredSchema):
     period = fields.String(
         required=True,
         validate=validate.OneOf([e.value for e in Period]),
