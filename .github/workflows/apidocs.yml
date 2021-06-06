@@ -1,0 +1,32 @@
+name: Deploy API docs
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Create API docs
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+        run: python apidocs.py > spec.yaml
+
+      - name: Build API docs page
+        uses: actions/setup-node@v1
+        with:
+          node-version: '15.3.0'
+        run: yarn global add redoc-cli
+        run: redoc-cli bundle spec.yaml -o ./publish/index.html
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          publish_dir: ./publish
