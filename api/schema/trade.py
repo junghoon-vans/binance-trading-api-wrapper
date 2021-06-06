@@ -109,7 +109,7 @@ class DeleteOrderSchema(SymbolRequiredSchema):
     origClientOrderId = fields.String()
 
 
-class MultipleOrderSchema(SymbolRequiredSchema):
+class BatchOrdersSchema(PostOrderSchema):
     quantity = fields.Decimal(
         requried=True,
         metadata={
@@ -118,9 +118,12 @@ class MultipleOrderSchema(SymbolRequiredSchema):
     )
 
 
-class PostMultipleOrderSchema(PostOrderSchema):
+class PostMultipleOrderSchema(Schema):
     batchOrders = fields.List(
-        fields.Nested(MultipleOrderSchema),
+        fields.Nested(
+            nested=BatchOrdersSchema,
+            requried=True,
+        ),
         validate=validate.Length(max=5),
     )
 

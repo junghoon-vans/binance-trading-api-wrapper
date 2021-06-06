@@ -22,7 +22,6 @@ class GetTransferSchema(Schema):
         required=False,
         metadata={
             "description": "Currently querying page. Start from 1. Default:1",
-            "example": "USDT",
         },
     )
     size = fields.Number(
