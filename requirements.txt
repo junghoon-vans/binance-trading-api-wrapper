@@ -1,6 +1,7 @@
 aiohttp==3.7.4.post0
 aniso8601==9.0.1
 apispec==4.5.0
+apispec-webframeworks==0.5.2
 appdirs==1.4.4
 async-timeout==3.0.1
 attrs==21.2.0
@@ -32,7 +33,7 @@ pre-commit==2.12.1
 pycodestyle==2.7.0
 pyflakes==2.3.1
 pyrsistent==0.17.3
-python-binance==1.0.10
+python-binance==1.0.12
 python-dateutil==2.8.1
 pytz==2021.1
 PyYAML==5.4.1
