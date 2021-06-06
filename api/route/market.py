@@ -91,9 +91,8 @@ def aggregate() -> Response:
     ---
     get:
       description:
-        - Get compressed, aggregate trades.
-        - Trades that fill at the time, from the same order,
-        - with the same price will have the quantity aggregated.
+        Get compressed, aggregate trades. Trades that fill at the time,
+        from the same order, with the same price will have the quantity aggregated.
       parameters:
         - in: query
           schema: GetAggregateTradesSchema
@@ -116,8 +115,8 @@ def klines() -> Response:
     ---
     get:
       description:
-        - Kline/candlestick bars for a symbol.
-        - Klines are uniquely identified by their open time.
+        Kline/candlestick bars for a symbol.
+        Klines are uniquely identified by their open time.
       parameters:
         - in: query
           schema: GetKlinesSchema
@@ -140,8 +139,8 @@ def continous_klines() -> Response:
     ---
     get:
       description:
-        - Kline/candlestick bars for a specific contract type.
-        - Klines are uniquely identified by their open time.
+        Kline/candlestick bars for a specific contract type.
+        Klines are uniquely identified by their open time.
       parameters:
         - in: query
           schema: GetContinousKlinesSchema

@@ -267,16 +267,14 @@ def position_mode() -> Response:
     Position Mode
     ---
     get:
-      description:
-        - Get user's position mode (Hedge Mode or One-way Mode ) on EVERY symbol
+      description: Get user's position mode on EVERY symbol
       responses:
         200:
           content:
             application/json: {}
           description: OK
     put:
-      description:
-        - Change user's position mode (Hedge Mode or One-way Mode ) on EVERY symbol
+      description: Change user's position mode on EVERY symbol
       requestBody:
         required: true
         content:
@@ -305,16 +303,14 @@ def multi_assets_mode() -> Response:
     Multi Assets Mode
     ---
     get:
-      description:
-        - Get user's Multi-Assets mode on Every symbol
+      description: Get user's Multi-Assets mode on Every symbol
       responses:
         200:
           content:
             application/json: {}
           description: OK
     put:
-      description:
-        - Change user's Multi-Assets mode on Every symbol
+      description: Change user's Multi-Assets mode on Every symbol
       requestBody:
         required: true
         content:
