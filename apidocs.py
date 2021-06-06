@@ -1,8 +1,5 @@
 import argparse
-
 from json import dumps as json_dump
-from yaml import dump as yaml_dump
-from apispec.yaml_utils import YAMLDumper
 
 from flask import Flask
 
@@ -26,7 +23,7 @@ def main():
     if args.json:
         print(json_dump(spec.to_dict(), ensure_ascii=False))
     else:
-        print(yaml_dump(spec.to_dict(), Dumper=YAMLDumper, allow_unicode=True))
+        print(spec.to_yaml({"allow_unicode": True}))
 
 
 if __name__ == "__main__":
