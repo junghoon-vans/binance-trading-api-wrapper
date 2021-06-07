@@ -24,7 +24,7 @@ blueprint = DocumentedBlueprint("market", __name__, url_prefix="/market")
 
 
 @blueprint.route("/exchange", methods=["GET"])
-def exchange() -> Response:
+def exchange_info() -> Response:
     """Exchange Information
     ---
     get:
@@ -41,7 +41,7 @@ def exchange() -> Response:
 
 
 @blueprint.route("/depth", methods=["GET"])
-def depth() -> Response:
+def order_book() -> Response:
     """Order Book
     ---
     get:
@@ -61,7 +61,7 @@ def depth() -> Response:
 
 
 @blueprint.route("/trades", methods=["GET"])
-def trades() -> Response:
+def recent_trade_list() -> Response:
     """Recent Trades List
     ---
     get:
@@ -82,7 +82,7 @@ def trades() -> Response:
 
 
 @blueprint.route("/trades/aggregate", methods=["GET"])
-def aggregate() -> Response:
+def aggregate_trades_list() -> Response:
     """Compressed/Aggregate Trades List
     ---
     get:
@@ -209,7 +209,7 @@ def mark_price() -> Response:
 
 
 @blueprint.route("/funding-rate", methods=["GET"])
-def get_funding_rate_history() -> Response:
+def funding_rate_history() -> Response:
     """Get Funding Rate History
     ---
     get:
@@ -272,7 +272,7 @@ def symbol_price_ticker() -> Response:
 
 @blueprint.route("/ticker/depth", methods=["GET"])
 def symbol_orderbook_ticker() -> Response:
-    """Symbol Order Book Ticke
+    """Symbol Order Book Ticker
     ---
     get:
       description: Best price/qty on the order book for a symbol or symbols.

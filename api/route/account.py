@@ -16,7 +16,7 @@ blueprint = DocumentedBlueprint("account", __name__, url_prefix="/account")
 
 
 @blueprint.route("/", methods=["GET"])
-def account() -> Response:
+def account_info() -> Response:
     """Account Information
     ---
     get:
@@ -33,7 +33,7 @@ def account() -> Response:
 
 
 @blueprint.route("/balance", methods=["GET"])
-def balance() -> Response:
+def account_balance() -> Response:
     """Futures Account Balance
     ---
     get:
@@ -49,7 +49,7 @@ def balance() -> Response:
 
 
 @blueprint.route("/transfer", methods=["GET", "POST"])
-def transfer() -> Response:
+def account_transfer() -> Response:
     """Futures Account Transfer
     ---
     get:
@@ -88,7 +88,7 @@ def transfer() -> Response:
 
 
 @blueprint.route("/trades", methods=["GET"])
-def trades() -> Response:
+def account_trade_list() -> Response:
     """Account Trade List
     ---
     get:
@@ -109,7 +109,7 @@ def trades() -> Response:
 
 
 @blueprint.route("/position", methods=["GET"])
-def position() -> Response:
+def position_info() -> Response:
     """Position Information
     ---
     get:
@@ -130,7 +130,7 @@ def position() -> Response:
 
 
 @blueprint.route("/income", methods=["GET"])
-def income() -> Response:
+def income_history() -> Response:
     """Get Income History
     ---
     get:

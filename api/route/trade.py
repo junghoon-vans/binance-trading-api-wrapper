@@ -113,7 +113,7 @@ def mutiple_order() -> Response:
 
 
 @blueprint.route("/order/open", methods=["GET"])
-def open_orders() -> Response:
+def open_order() -> Response:
     """Open Order
     ---
     get:
@@ -134,7 +134,7 @@ def open_orders() -> Response:
 
 
 @blueprint.route("/order/all", methods=["GET", "DELETE"])
-def all_orders() -> Response:
+def all_open_orders() -> Response:
     """All Open Orders
     ---
     get:
@@ -171,7 +171,7 @@ def all_orders() -> Response:
 
 
 @blueprint.route("/leverage", methods=["PUT"])
-def leverage() -> Response:
+def change_initial_leverage() -> Response:
     """Change Initial Leverage
     ---
     put:
@@ -194,7 +194,7 @@ def leverage() -> Response:
 
 
 @blueprint.route("/margin-type", methods=["PUT"])
-def margin_type() -> Response:
+def change_margin_type() -> Response:
     """Change Margin Type
     ---
     put:
