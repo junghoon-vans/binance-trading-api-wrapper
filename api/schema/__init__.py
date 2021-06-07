@@ -36,8 +36,8 @@ from api.schema.trade import (
     PostMultipleOrderSchema,
     DeleteMultipleOrderSchema,
     GetOpenOrderSchema,
-    GetAllOrderSchema,
-    DeleteAllOrderSchema,
+    GetAllOpenOrderSchema,
+    DeleteAllOpenOrderSchema,
     PutLeverageSchema,
     PutMarginTypeSchema,
     GetPositionMarginSchema,
@@ -78,8 +78,8 @@ trade_delete_order_schema = DeleteOrderSchema()
 trade_post_multiple_order_schema = PostMultipleOrderSchema()
 trade_delete_multiple_order_schema = DeleteMultipleOrderSchema()
 trade_get_open_order_schema = GetOpenOrderSchema()
-trade_get_all_order_schema = GetAllOrderSchema()
-trade_delete_all_order_schema = DeleteAllOrderSchema()
+trade_get_all_open_order_schema = GetAllOpenOrderSchema()
+trade_delete_all_open_order_schema = DeleteAllOpenOrderSchema()
 trade_put_leverage_schema = PutLeverageSchema()
 trade_put_margin_type_schema = PutMarginTypeSchema()
 trade_get_position_margin_schema = GetPositionMarginSchema()

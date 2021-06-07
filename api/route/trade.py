@@ -8,8 +8,8 @@ from api.schema import (
     trade_post_multiple_order_schema,
     trade_delete_multiple_order_schema,
     trade_get_open_order_schema,
-    trade_get_all_order_schema,
-    trade_delete_all_order_schema,
+    trade_get_all_open_order_schema,
+    trade_delete_all_open_order_schema,
     trade_put_leverage_schema,
     trade_put_margin_type_schema,
     trade_get_position_margin_schema,
@@ -141,7 +141,7 @@ def all_open_orders() -> Response:
       description: Current All Open Orders
       parameters:
         - in: query
-          schema: GetAllOrderSchema
+          schema: GetAllOpenOrderSchema
       responses:
         200:
           content:
@@ -151,7 +151,7 @@ def all_open_orders() -> Response:
       description: Cancel All Open Orders
       parameters:
         - in: query
-          schema: DeleteAllOrderSchema
+          schema: DeleteAllOpenOrderSchema
       responses:
         200:
           content:
@@ -162,10 +162,10 @@ def all_open_orders() -> Response:
     response = Response()
 
     if request.method == "GET":
-        params = trade_get_all_order_schema.load(request.args.to_dict())
+        params = trade_get_all_open_order_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_get_all_orders(**params))
     elif request.method == "DELETE":
-        params = trade_delete_all_order_schema.load(request.args.to_dict())
+        params = trade_delete_all_open_order_schema.load(request.args.to_dict())
         response = jsonify(server.request.futures_cancel_all_open_orders(**params))
     return response
 

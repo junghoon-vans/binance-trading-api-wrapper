@@ -153,11 +153,11 @@ class GetOpenOrderSchema(SymbolRequiredSchema):
     origClientOrderId = fields.String()
 
 
-class GetAllOrderSchema(SymbolOptionalSchema):
+class GetAllOpenOrderSchema(SymbolOptionalSchema):
     pass
 
 
-class DeleteAllOrderSchema(SymbolRequiredSchema):
+class DeleteAllOpenOrderSchema(SymbolRequiredSchema):
     pass
 
 
