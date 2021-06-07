@@ -17,12 +17,12 @@ jobs:
         with:
           python-version: '3.9'
       - run: pip install -r requirements.txt
-      - run: python apidocs.py > spec.yaml
+      - run: python apidocs.py > openapi.yaml
 
       - name: Build API docs page
         uses: seeebiii/redoc-cli-github-action@v10
         with:
-          args: 'bundle spec.yaml -o ./publish/index.html'
+          args: 'bundle openapi.yaml -o ./publish/index.html'
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

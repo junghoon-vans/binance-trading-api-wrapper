@@ -1,6 +1,8 @@
 Binance Trading API
 ===
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Jeonghun-Ban/binance-trading-api/Deploy%20API%20docs?style=flat-square)
+
 About
 ---
 
@@ -61,12 +63,14 @@ python launcher -e testing # run server with testing env
 > The testing environment connects to the Binance testnet. Therefore, you need to set `api_key`, `api_secret` as `environment variable` before executing server.
 
 
-### Build apidocs
+### Build apidocs pages
 
 ```
-python apidocs
+python apidocs.py > openapi.yaml
+redoc-cli bundle openapi.yaml -o ./publish/index.html
 ```
 
+> This requires a `redoc-cli` installation. 
 
 Components
 ---
@@ -82,6 +86,7 @@ Components
 │   │   └── trade.py
 │   ├── schema
 │   │   └── __init__.py
+│   │   └── base.py
 │   │   └── account.py
 │   │   └── default.py
 │   │   └── market.py
