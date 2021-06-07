@@ -25,8 +25,7 @@ blueprint = DocumentedBlueprint("market", __name__, url_prefix="/market")
 
 @blueprint.route("/exchange", methods=["GET"])
 def exchange() -> Response:
-    """
-    Exchange Information
+    """Exchange Information
     ---
     get:
       description: Current exchange trading rules and symbol information
@@ -43,8 +42,7 @@ def exchange() -> Response:
 
 @blueprint.route("/depth", methods=["GET"])
 def depth() -> Response:
-    """
-    Order Book
+    """Order Book
     ---
     get:
       parameters:
@@ -64,8 +62,7 @@ def depth() -> Response:
 
 @blueprint.route("/trades", methods=["GET"])
 def trades() -> Response:
-    """
-    Recent Trades List
+    """Recent Trades List
     ---
     get:
       description: Get recent trades
@@ -86,8 +83,7 @@ def trades() -> Response:
 
 @blueprint.route("/trades/aggregate", methods=["GET"])
 def aggregate() -> Response:
-    """
-    Compressed/Aggregate Trades List
+    """Compressed/Aggregate Trades List
     ---
     get:
       description:
@@ -110,8 +106,7 @@ def aggregate() -> Response:
 
 @blueprint.route("/klines", methods=["GET"])
 def klines() -> Response:
-    """
-    Kline/Candlestick Data
+    """Kline/Candlestick Data
     ---
     get:
       description:
@@ -134,8 +129,7 @@ def klines() -> Response:
 
 @blueprint.route("/klines/continous", methods=["GET"])
 def continous_klines() -> Response:
-    """
-    Continuous Contract Kline/Candlestick Data
+    """Continuous Contract Kline/Candlestick Data
     ---
     get:
       description:
@@ -158,8 +152,7 @@ def continous_klines() -> Response:
 
 @blueprint.route("/klines/historical", methods=["GET", "POST"])
 def historical_klines() -> Response:
-    """
-    Historical Klines
+    """Historical Klines
     ---
     get:
       parameters:
@@ -196,8 +189,7 @@ def historical_klines() -> Response:
 
 @blueprint.route("/mark-price", methods=["GET"])
 def mark_price() -> Response:
-    """
-    Mark Price
+    """Mark Price
     ---
     get:
       description: Mark Price and Funding Rate
@@ -218,8 +210,7 @@ def mark_price() -> Response:
 
 @blueprint.route("/funding-rate", methods=["GET"])
 def get_funding_rate_history() -> Response:
-    """
-    Get Funding Rate History
+    """Get Funding Rate History
     ---
     get:
       parameters:
@@ -239,8 +230,7 @@ def get_funding_rate_history() -> Response:
 
 @blueprint.route("/ticker/daily", methods=["GET"])
 def ticker_daily_price_changes() -> Response:
-    """
-    24hr Ticker Price Change Statistics
+    """24hr Ticker Price Change Statistics
     ---
     get:
       description: 24 hour rolling window price change statistics.
@@ -261,8 +251,7 @@ def ticker_daily_price_changes() -> Response:
 
 @blueprint.route("/ticker/price", methods=["GET"])
 def symbol_price_ticker() -> Response:
-    """
-    Symbol Price Ticker
+    """Symbol Price Ticker
     ---
     get:
       description: Latest price for a symbol or symbols.
@@ -283,8 +272,7 @@ def symbol_price_ticker() -> Response:
 
 @blueprint.route("/ticker/depth", methods=["GET"])
 def symbol_orderbook_ticker() -> Response:
-    """
-    Symbol Order Book Ticke
+    """Symbol Order Book Ticke
     ---
     get:
       description: Best price/qty on the order book for a symbol or symbols.
@@ -305,8 +293,7 @@ def symbol_orderbook_ticker() -> Response:
 
 @blueprint.route("/open-interest", methods=["GET"])
 def open_interest() -> Response:
-    """
-    Open Interest
+    """Open Interest
     ---
     get:
       description: Get present open interest of a specific symbol.
@@ -327,8 +314,7 @@ def open_interest() -> Response:
 
 @blueprint.route("/open-interest/statistics", methods=["GET"])
 def open_interest_statistics() -> Response:
-    """
-    Open Interest Statistics
+    """Open Interest Statistics
     ---
     get:
       parameters:

@@ -10,8 +10,7 @@ blueprint = DocumentedBlueprint("default", __name__, url_prefix="/")
 
 @blueprint.route("/ping", methods=["GET"])
 def ping() -> Response:
-    """
-    Test Connectivity
+    """Test Connectivity
     ---
     get:
       description: Test connectivity to the Rest API.
@@ -28,8 +27,7 @@ def ping() -> Response:
 
 @blueprint.route("/time", methods=["GET"])
 def time() -> Response:
-    """
-    Check Server Time
+    """Check Server Time
     ---
     get:
       description: Test connectivity to the Rest API and get the current server time.
@@ -47,8 +45,7 @@ def time() -> Response:
 
 @blueprint.route("/stream", methods=["GET"])
 def stream() -> Response:
-    """
-    User Data Stream
+    """User Data Stream
     ---
     get:
       description: Generate a Listen Key
@@ -67,8 +64,7 @@ def stream() -> Response:
 
 @blueprint.route("/stream/<listen_key>", methods=["PUT", "DELETE"])
 def modify_stream(listen_key) -> Response:
-    """
-    User Data Stream
+    """User Data Stream
     ---
     put:
       description: Ping/Keep-alive a Listen Key

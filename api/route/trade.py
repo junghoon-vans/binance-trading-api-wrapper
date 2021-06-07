@@ -25,8 +25,7 @@ blueprint = DocumentedBlueprint("trade", __name__, url_prefix="/trade")
 
 @blueprint.route("/order", methods=["GET", "POST", "DELETE"])
 def order() -> Response:
-    """
-    Order
+    """Order
     ---
     get:
       description: Check an order's status.
@@ -78,8 +77,7 @@ def order() -> Response:
 
 @blueprint.route("/order/multiple", methods=["POST", "DELETE"])
 def mutiple_order() -> Response:
-    """
-    Multiple Order
+    """Multiple Order
     ---
     post:
       requestBody:
@@ -116,8 +114,7 @@ def mutiple_order() -> Response:
 
 @blueprint.route("/order/open", methods=["GET"])
 def open_orders() -> Response:
-    """
-    Open Order
+    """Open Order
     ---
     get:
       description: Query Current Open Order
@@ -138,8 +135,7 @@ def open_orders() -> Response:
 
 @blueprint.route("/order/all", methods=["GET", "DELETE"])
 def all_orders() -> Response:
-    """
-    All Open Orders
+    """All Open Orders
     ---
     get:
       description: Current All Open Orders
@@ -176,8 +172,7 @@ def all_orders() -> Response:
 
 @blueprint.route("/leverage", methods=["PUT"])
 def leverage() -> Response:
-    """
-    Change Initial Leverage
+    """Change Initial Leverage
     ---
     put:
       description: Change user's initial leverage of specific symbol market.
@@ -200,8 +195,7 @@ def leverage() -> Response:
 
 @blueprint.route("/margin-type", methods=["PUT"])
 def margin_type() -> Response:
-    """
-    Change Margin Type
+    """Change Margin Type
     ---
     put:
       requestBody:
@@ -223,8 +217,7 @@ def margin_type() -> Response:
 
 @blueprint.route("/position-margin", methods=["GET", "PUT"])
 def position_margin() -> Response:
-    """
-    Position Margin
+    """Position Margin
     ---
     get:
       description: Get Position Margin Change History
@@ -263,8 +256,7 @@ def position_margin() -> Response:
 
 @blueprint.route("/mode/position", methods=["GET", "PUT"])
 def position_mode() -> Response:
-    """
-    Position Mode
+    """Position Mode
     ---
     get:
       description: Get user's position mode on EVERY symbol
@@ -299,8 +291,7 @@ def position_mode() -> Response:
 
 @blueprint.route("mode/multi-asset", methods=["GET", "PUT"])
 def multi_assets_mode() -> Response:
-    """
-    Multi Assets Mode
+    """Multi Assets Mode
     ---
     get:
       description: Get user's Multi-Assets mode on Every symbol

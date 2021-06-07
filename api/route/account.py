@@ -17,8 +17,7 @@ blueprint = DocumentedBlueprint("account", __name__, url_prefix="/account")
 
 @blueprint.route("/", methods=["GET"])
 def account() -> Response:
-    """
-    Account Information
+    """Account Information
     ---
     get:
       description: Get current account information.
@@ -35,8 +34,7 @@ def account() -> Response:
 
 @blueprint.route("/balance", methods=["GET"])
 def balance() -> Response:
-    """
-    Futures Account Balance
+    """Futures Account Balance
     ---
     get:
       responses:
@@ -52,8 +50,7 @@ def balance() -> Response:
 
 @blueprint.route("/transfer", methods=["GET", "POST"])
 def transfer() -> Response:
-    """
-    Futures Account Transfer
+    """Futures Account Transfer
     ---
     get:
       description: Get Future Account Transaction History List.
@@ -92,8 +89,7 @@ def transfer() -> Response:
 
 @blueprint.route("/trades", methods=["GET"])
 def trades() -> Response:
-    """
-    Account Trade List
+    """Account Trade List
     ---
     get:
       description: Get trades for a specific account and symbol.
@@ -114,8 +110,7 @@ def trades() -> Response:
 
 @blueprint.route("/position", methods=["GET"])
 def position() -> Response:
-    """
-    Position Information
+    """Position Information
     ---
     get:
       description: Get current position information.
@@ -136,8 +131,7 @@ def position() -> Response:
 
 @blueprint.route("/income", methods=["GET"])
 def income() -> Response:
-    """
-    Get Income History
+    """Get Income History
     ---
     get:
       parameters:
@@ -157,8 +151,7 @@ def income() -> Response:
 
 @blueprint.route("/leverage-bracket", methods=["GET"])
 def leverage_bracket() -> Response:
-    """
-    Notional and Leverage Brackets
+    """Notional and Leverage Brackets
     ---
     get:
       parameters:
