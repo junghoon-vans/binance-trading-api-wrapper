@@ -63,7 +63,7 @@ def stream() -> Response:
 
 
 @blueprint.route("/stream/<listen_key>", methods=["PUT", "DELETE"])
-def modify_stream(listen_key) -> Response:
+def update_stream(listen_key) -> Response:
     """User Data Stream
     ---
     put:
