@@ -8,25 +8,25 @@ from api.schema.base import (
 from api.enum import CandlestickInterval, ContractType, Period
 
 
-class LookupSchema(SymbolRequiredSchema):
+class GetOrderBookSchema(SymbolRequiredSchema):
     limit = fields.Integer(
         required=False,
-        validate=validate.Range(min=0, max=1000),
-        metadata={
-            "description": "Default 500",
-        },
+        default=500,
+        validate=validate.OneOf(
+            [5, 10, 20, 50, 100, 500, 1000],
+        ),
     )
 
 
-class GetOrderBookSchema(LookupSchema):
-    pass
+class GetRecentTradesSchema(SymbolRequiredSchema):
+    limit = fields.Integer(
+        required=False,
+        default=500,
+        validate=validate.Range(min=1, max=1000),
+    )
 
 
-class GetRecentTradesSchema(LookupSchema):
-    pass
-
-
-class GetAggregateTradesSchema(LookupSchema):
+class GetAggregateTradesSchema(SymbolRequiredSchema):
     fromId = fields.Number(
         required=False,
         metadata={
@@ -45,6 +45,11 @@ class GetAggregateTradesSchema(LookupSchema):
             "description": "Timestamp in ms to get aggregate trades until INCLUSIVE.",
         },
     )
+    limit = fields.Integer(
+        required=False,
+        default=500,
+        validate=validate.Range(min=1, max=1000),
+    )
 
 
 class GetKlinesSchema(SymbolRequiredSchema):
@@ -60,10 +65,8 @@ class GetKlinesSchema(SymbolRequiredSchema):
     )
     limit = fields.Integer(
         required=False,
-        validate=validate.Range(min=0, max=1500),
-        metadata={
-            "description": "Default 500",
-        },
+        default=500,
+        validate=validate.Range(min=1, max=1500),
     )
 
 
@@ -84,10 +87,8 @@ class GetContinousKlinesSchema(PairRequiredSchema):
     )
     limit = fields.Integer(
         required=False,
-        validate=validate.Range(min=0, max=1500),
-        metadata={
-            "description": "Default 500",
-        },
+        default=500,
+        validate=validate.Range(min=1, max=1500),
     )
 
 
@@ -104,10 +105,8 @@ class GetHistoricalKlinesSchema(SymbolRequiredSchema):
     )
     limit = fields.Integer(
         required=False,
-        validate=validate.Range(min=0, max=1000),
-        metadata={
-            "description": "Default 500",
-        },
+        default=500,
+        validate=validate.Range(min=1, max=1000),
     )
 
 
@@ -143,10 +142,8 @@ class GetFundingRateSchema(SymbolOptionalSchema):
     )
     limit = fields.Integer(
         required=False,
-        validate=validate.Range(min=0, max=1000),
-        metadata={
-            "description": "Default 100",
-        },
+        default=100,
+        validate=validate.Range(min=1, max=1000),
     )
 
 
@@ -173,10 +170,8 @@ class GetOpenInterestStatisticsSchema(SymbolRequiredSchema):
     )
     limit = fields.Integer(
         required=False,
-        validate=validate.Range(min=0, max=500),
-        metadata={
-            "description": "Default 30",
-        },
+        default=30,
+        validate=validate.Range(min=1, max=500),
     )
     startTime = fields.Number(
         required=False,
