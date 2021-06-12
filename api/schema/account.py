@@ -20,15 +20,16 @@ class GetTransferSchema(Schema):
     )
     current = fields.Number(
         required=False,
+        default=1,
+        validate=validate.Range(min=1),
         metadata={
-            "description": "Currently querying page. Start from 1. Default:1",
+            "description": "Currently querying page.",
         },
     )
     size = fields.Number(
         required=False,
-        metadata={
-            "description": "Default:10 Max:100",
-        },
+        default=10,
+        validate=validate.Range(min=0, max=100),
     )
 
 
@@ -91,9 +92,8 @@ class GetIncomeSchema(Schema):
     )
     limit = fields.Integer(
         required=False,
-        metadata={
-            "description": "Default 100; max 1000",
-        },
+        default=100,
+        validate=validate.Range(min=1, max=1000),
     )
 
 

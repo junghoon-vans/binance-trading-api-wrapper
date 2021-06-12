@@ -133,7 +133,7 @@ def open_order() -> Response:
     return response
 
 
-@blueprint.route("/order/all", methods=["GET", "DELETE"])
+@blueprint.route("/order/open/all", methods=["GET", "DELETE"])
 def all_open_orders() -> Response:
     """All Open Orders
     ---
