@@ -30,12 +30,12 @@ pip install -r requirements.txt
 Configuration files using `YAML` format are in [/configs](/configs).
 
 ```
-cp example.yaml production.yaml
-cp example.yaml development.yaml
-cp example.yaml testing.yaml
+cp example.toml production.toml
+cp example.toml development.toml
+cp example.toml testing.toml
 ```
 
-You can easily create `config files` by copying [example.yaml](/configs/example.yaml). 
+You can easily create `config files` by copying [example.toml](/configs/example.toml). 
 
 #### 2. Environment variable
 
@@ -93,16 +93,16 @@ Components
 │   │   └── trade.py
 │   ├── utils
 │   │   ├── __init__.py
-│   │   └── config_proxy.py
+│   │   └── convert_case.py
 │   ├── __init__.py
 │   ├── client.py
 │   └── enum.py
 │   └── spec.py
 ├── configs
-│   └── development.yaml
-│   └── example.yaml
-│   └── production.yaml
-│   └── testing.yaml
+│   └── development.toml
+│   └── example.toml
+│   └── production.toml
+│   └── testing.toml
 ├── .gitignore
 ├── .pre-commit-config.yaml
 ├── apidocs.py

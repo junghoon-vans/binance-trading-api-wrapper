@@ -1,4 +1,5 @@
 import os
+import toml
 from typing import Optional, NamedTuple
 
 from flask import Flask, jsonify, Response
@@ -6,7 +7,6 @@ from marshmallow import ValidationError
 
 from binance import Client
 
-from api.utils.config_proxy import load_config
 from api.client import MainnetClient, TestnetClient
 from api.enum import Environment
 
@@ -23,7 +23,7 @@ def get_server(env: str = "") -> Server:
     global server
     if server is None:
         app = Flask(__name__)
-        app.config.update(load_config(env))
+        app.config.from_file(filename=load_config(env), load=toml.load)  # type: ignore
         app.register_error_handler(ValidationError, _handle_validation_error)
         client = create_client(env=env)
 
@@ -32,6 +32,10 @@ def get_server(env: str = "") -> Server:
             request=client,
         )
     return server
+
+
+def load_config(env: str):
+    return "../configs/" + env + ".toml"
 
 
 def create_client(env: str) -> Client:
