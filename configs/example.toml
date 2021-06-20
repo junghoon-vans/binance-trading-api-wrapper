@@ -1,0 +1,7 @@
+# flask
+ENV = "production"
+DEBUG = true
+
+[binance]
+api_key = ""
+api_secret = ""
