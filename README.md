@@ -1,7 +1,7 @@
-Binance Trading API
+Binance Trading API Wrapper
 ===
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Jeonghun-Ban/binance-trading-api/Deploy%20API%20docs?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Jeonghun-Ban/binance-trading-api-wrapper/Deploy%20API%20docs?style=flat-square)
 
 About
 ---
@@ -14,7 +14,7 @@ Usage
 ### Clone this project
 
 ```bash
-git clone https://github.com/Jeonghun-Ban/binance-trading-api.git
+git clone https://github.com/Jeonghun-Ban/binance-trading-api-wrapper.git
 ```
 
 ### Install dependency packages
