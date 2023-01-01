@@ -16,8 +16,11 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: '3.9'
-      - run: pip install -r requirements.txt
-      - run: python apidocs.py > openapi.yaml
+
+      - name: Create API docs spec
+        run: |
+          pip install -r requirements.txt
+          python apidocs.py > openapi.yaml
 
       - name: Build API docs page
         uses: seeebiii/redoc-cli-github-action@v10
