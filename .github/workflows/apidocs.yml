@@ -3,21 +3,22 @@ name: Deploy API docs
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Create API docs
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.9'
-      - run: pip install -r requirements.txt
-      - run: python apidocs.py > openapi.yaml
+
+      - name: Create API docs spec
+        run: |
+          pip install -r requirements.txt
+          python apidocs.py > openapi.yaml
 
       - name: Build API docs page
         uses: seeebiii/redoc-cli-github-action@v10
@@ -27,5 +28,5 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./publish
