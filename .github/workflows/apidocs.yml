@@ -3,8 +3,6 @@ name: Deploy API docs
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
