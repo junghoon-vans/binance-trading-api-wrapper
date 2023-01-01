@@ -1,7 +1,7 @@
 Binance Trading API Wrapper
 ===
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Jeonghun-Ban/binance-trading-api-wrapper/Deploy%20API%20docs?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/junghoon-vans/binance-trading-api-wrapper/apidocs.yml?branch=main)
 
 About
 ---
