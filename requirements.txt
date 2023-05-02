@@ -14,7 +14,7 @@ dateparser==1.0.0
 distlib==0.3.1
 filelock==3.0.12
 flake8==3.9.1
-Flask==2.0.1
+Flask==2.3.2
 identify==2.2.4
 idna==2.10
 itsdangerous==2.0.1
